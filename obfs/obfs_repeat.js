@@ -1,1 +1,904 @@
-var _0x14af=['slice','w3-green','timeA','append','0,\x20300','iframe#player','w3-black','range:\x20','flyout','value','fold','html','src','onOff','initializePM\x20called!','alreadySetA','sliderinit','return\x20(function()\x20','classList','modal','Controls\x20Instanciated','#max-label','mouse\x20out','w3-container','labelElementMin','w3-red','indexOf','log','w3-row','#iframeContainer','#buttonContainer','div.pm','position','<label\x20class=\x22switch\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<input\x20id=\x22onOff\x22\x20type=\x22checkbox\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22slider\x20round\x22\x20></span>\x0a\x20\x20\x20\x20</label>','placeModal','Yep,\x20repeat.js\x20is\x20here','innerHTML','sliderElement','appendChild','slider\x20handle\x20clicked\x20','fuyipddBlPehCeKd.cMPzomHNQRsYAUIBFkGGpAACRDFYL','labelElementMax','0:\x20','turnOffLoop\x20called!','w3-half','placeInfoBtn','#buttonRow','click','clearInterval','infoButton','#closeModal','#min-label','placeButtonContainer','post-\x20','loop','none','#slider-range','function','floor','set\x20interval\x20-\x20','getIframe','attr','checked','apply','getElementById','waiting!','time\x20set:\x20','loopVideo','modalContent','<svg\x20width=\x227.7063mm\x22\x20height=\x226.7874mm\x22\x20version=\x221.1\x22\x20viewBox=\x220\x200\x207.7063\x206.7874\x22\x20xmlns=\x22http://www.w3.org/2000/svg\x22><g\x20transform=\x22translate(-55.837\x20-60.017)\x22><g\x20transform=\x22matrix(.0045052\x20.005541\x20-.005541\x20.0045052\x2059.824\x2058.308)\x22\x20stroke-width=\x2237.049\x22><path\x20d=\x22m818.9\x2010h-238.9c-30.6\x200-61.2\x2030.6-61.2\x2061.2v238.9c0\x2030.6\x2030.6\x2061.2\x2061.2\x2061.2s61.2-30.6\x2061.2-61.2v-177.6h177.6c30.6\x200\x2061.2-30.6\x2061.2-61.2s-30.5-61.3-61.1-61.3z\x22/><path\x20d=\x22m588.7\x2067v124.1c147.8\x2041.5\x20254.3\x20174\x20254.3\x20333.7\x200\x20195.2-159.7\x20341.1-349\x20341.1s-349-159.7-349-349c0-153.8\x20100.6-283.8\x20236.6-331.2\x2017.8-5.9\x2059.1-41.3\x2053.2-82.8-11.9-41.3-47.2-47.2-71-41.3-194.9\x2059.1-337\x20236.4-337\x20455.3\x200.1\x20260.2\x20212.9\x20473.1\x20473.2\x20473.1s473.1-205\x20473.1-465.2c-5.7-224.9-165.4-416.5-384.4-457.8z\x22/></g><text\x20transform=\x22matrix(1.1984\x200\x200\x201.1984\x20-16.043\x20-13.248)\x22\x20fill=\x22#000000\x22\x20font-family=\x22\x27Rockwell\x20Nova\x27\x22\x20font-size=\x222.355px\x22\x20font-style=\x22italic\x22\x20font-weight=\x22bold\x22\x20stroke-width=\x22.83444\x22\x20style=\x22line-height:1.25;shape-inside:url(#rect852);white-space:pre\x22\x20xml:space=\x22preserve\x22><tspan\x20x=\x2261.988281\x22\x20y=\x2265.297122\x22><tspan\x20font-family=\x22\x27Rockwell\x20Nova\x27\x22\x20font-size=\x223.7532px\x22\x20font-style=\x22italic\x22\x20font-weight=\x22bold\x22\x20stroke-width=\x22.83444\x22>i</tspan></tspan></text></g></svg>','getDuration','#onOff','visEventsIframeConatainer','charCodeAt','Player','range\x20percent\x20of\x20duration:\x20','w3-blue','player','add','playVideo','sizeIframeContainer','iframe','<div\x20id=\x27iframeContainer\x27></div>','slider','setInterval','turnOnLoop','querySelector','#player','[uypBPCKMPzHNQRsYAUIBFkGGpAACRDFYL]','#slider-range\x20>\x20span:nth-child(3)','w3-quarter','handle','iframe.pm','wrap','40px','placeOnDOM','width','style','#sliderContainer','item','seekTo','data','iframeContainer','alreadySetB','show','prettifyTime','interval','YTPlayer\x20Instanciated','index.uiSliderHandle','#min-label,\x20#max-label',',\x201:\x20',':00','onYouTubeIframeAPIReady','getCurrentTime','loopVideo\x20called!','addEventListener','pauseVideo','<div\x20class=\x22modal-content\x22>\x0a<span\x20id=\x22closeModal\x22\x20class=\x22close\x22>&times;</span>\x0a\x0a<h2>Practise\x20Master</h2>\x20\x20<div\x20style=\x22float:\x20right;\x22>\x20&#9612;\x20&#9612;\x20Video\x20Paused</div>\x20<br><br>\x0a<p>To\x20loop\x20a\x20video\x20section,\x20drag\x20each\x20slider\x20control\x20handle\x20to\x20pick\x20a\x20video\x20time\x20selection.\x20</p><p>\x20Toggle\x20the\x20off\x20button\x20to\x20continue\x20playing\x20the\x20video.</p>\x20<br><br>\x0a<div\x20id=\x22modalFinePrint\x22><a\x20href=\x22http://practisemaster.com\x22\x20target=\x22_blank\x22>Practice\x20Master</a>\x20is\x20developed\x20by\x20<a>Learnsense\x20LTD</a>.\x0aFind\x20more\x20learning\x20tools\x20on\x20<a\x20href=\x22https://flipprs.club/\x22\x20target=\x22_blank\x22>www.flipprs.club</a>.\x20<br><br>\x20\x20Check\x20for\x20the\x20<a\x20href=\x22https://chrome.google.com/webstore/detail/practise-master/mplagcpfbmegacdoddbkhhliahikehib\x22\x20\x20target=\x22_blank\x22>YouTube\x20PractiseMaster</a>\x20on\x20Chrome\x20Store!\x20</p></div></div>','buttonContainer','length','attribute','turnOffLoop','min-label','body','w3-threequarter','timeB','placeSliderContainer','display','placeOnOffBtn','createElement','center\x20top','target','css','height','appendTo','fromCharCode','div','center\x20bottom','values'];(function(_0x27e21e,_0x2a65bc){var _0x14af17=function(_0xa6c40a){while(--_0xa6c40a){_0x27e21e['push'](_0x27e21e['shift']());}};_0x14af17(++_0x2a65bc);}(_0x14af,0x108));var _0xa6c4=function(_0x27e21e,_0x2a65bc){_0x27e21e=_0x27e21e-0x190;var _0x14af17=_0x14af[_0x27e21e];return _0x14af17;};var _0x18773c=_0xa6c4;'use strict';var loop,iframeId='player',oriGonYouTubeIframeAPIReady;function imhere(){var _0xb08773=_0xa6c4;return _0xb08773(0x1c1);}var onYouTubeIframeAPIReady=window['onYouTubeIframeAPIReady']&&typeof window[_0x18773c(0x20e)]==_0x18773c(0x1d7)?window[_0x18773c(0x20e)]:function(){var _0x34d38b=_0x18773c;loop=new Loop(),loop['player']=new YT[(_0x34d38b(0x1e8))](iframeId,{'events':{'onReady':initializePM}});};class Loop{constructor(){var _0x536fcb=_0x18773c;console[_0x536fcb(0x1b9)](_0x536fcb(0x209)),this[_0x536fcb(0x1eb)],this[_0x536fcb(0x1a0)]=0x96,this[_0x536fcb(0x190)]=0xa0,this['alreadySetA']=!![],this[_0x536fcb(0x205)]=!![],this['interval'];}[_0x18773c(0x1f3)](){var _0x582e22=_0x18773c;this['interval']===undefined&&(this[_0x582e22(0x208)]=window[_0x582e22(0x1f2)](()=>this[_0x582e22(0x1e1)](),0xfa)),console[_0x582e22(0x1b9)](_0x582e22(0x1d9)+this['interval']);}[_0x18773c(0x217)](){var _0x2a494a=_0x18773c;console[_0x2a494a(0x1b9)](_0x2a494a(0x1c9)),console[_0x2a494a(0x1b9)]('pre-\x20'+this[_0x2a494a(0x208)]),window[_0x2a494a(0x1ce)](this[_0x2a494a(0x208)]),this['interval']=undefined,console[_0x2a494a(0x1b9)](_0x2a494a(0x1d3)+this[_0x2a494a(0x208)]);}[_0x18773c(0x1e1)](){var _0x182c0f=_0x18773c,_0x43b6c4=this,_0x5de033=_0x43b6c4['player'][_0x182c0f(0x20f)]();console[_0x182c0f(0x1b9)](_0x182c0f(0x210));if(_0x43b6c4[_0x182c0f(0x1ad)]&&_0x43b6c4[_0x182c0f(0x205)]){if(_0x5de033<_0x43b6c4[_0x182c0f(0x1a0)])_0x43b6c4[_0x182c0f(0x1eb)][_0x182c0f(0x202)](_0x43b6c4['timeA']);else _0x5de033>_0x43b6c4[_0x182c0f(0x190)]&&_0x43b6c4[_0x182c0f(0x1eb)][_0x182c0f(0x202)](_0x43b6c4['timeA']);}else{if(_0x43b6c4[_0x182c0f(0x1ad)])_0x5de033<_0x43b6c4[_0x182c0f(0x1a0)]&&_0x43b6c4[_0x182c0f(0x1eb)][_0x182c0f(0x202)](_0x43b6c4[_0x182c0f(0x1a0)]);else _0x43b6c4[_0x182c0f(0x205)]&&(_0x5de033>_0x43b6c4[_0x182c0f(0x190)]&&_0x43b6c4[_0x182c0f(0x1eb)][_0x182c0f(0x202)](_0x43b6c4[_0x182c0f(0x1a0)]));}}}class Slider{constructor(){var _0x566cf1=_0x18773c;this[_0x566cf1(0x1d4)]=loop,this['sliderElement']=document[_0x566cf1(0x194)](_0x566cf1(0x19b)),this[_0x566cf1(0x1c3)]['id']='slider-range',this[_0x566cf1(0x1c3)][_0x566cf1(0x1b0)][_0x566cf1(0x1ec)](_0x566cf1(0x21a)),this[_0x566cf1(0x1c3)][_0x566cf1(0x1b0)][_0x566cf1(0x1ec)](_0x566cf1(0x1b5)),this[_0x566cf1(0x1c3)]['classList'][_0x566cf1(0x1ec)](_0x566cf1(0x1b7)),this[_0x566cf1(0x1b6)]=document[_0x566cf1(0x194)](_0x566cf1(0x19b)),this['labelElementMin']['id']=_0x566cf1(0x218),this[_0x566cf1(0x1c7)]=document['createElement'](_0x566cf1(0x19b)),this['labelElementMax']['id']='max-label',this[_0x566cf1(0x1fd)](),this[_0x566cf1(0x1ae)]();}['placeOnDOM'](){var _0x139671=_0x18773c;$(_0x139671(0x200))[_0x139671(0x1a1)](this[_0x139671(0x1c3)]),$(_0x139671(0x1d6))[_0x139671(0x1a1)](this['labelElementMin']),$(_0x139671(0x1d6))[_0x139671(0x1a1)](this[_0x139671(0x1c7)]);}[_0x18773c(0x207)](_0x312580){var _0xf40cb8=_0x18773c,_0x32585f=Math[_0xf40cb8(0x1d8)](_0x312580/0x3c),_0x1a3ae2=_0x312580%0x3c;if(_0x1a3ae2===0x0)_0x1a3ae2=_0xf40cb8(0x20d);else _0x1a3ae2<0xa?_0x1a3ae2=':0'+_0x1a3ae2:_0x1a3ae2=':'+_0x1a3ae2;return _0x32585f+_0x1a3ae2;}['sliderinit'](){var _0x3b4d69=_0x18773c,_0x168570=this,_0x45b705=loop[_0x3b4d69(0x1eb)][_0x3b4d69(0x1e4)]();document['querySelector'](_0x3b4d69(0x1f7)),$('#slider-range\x20span:eq(0),\x20#slider-range\x20span:eq(1)')['on'](_0x3b4d69(0x1cd),function(){var _0x4f7d17=_0x3b4d69;console['log'](_0x4f7d17(0x1c5)),$(_0x4f7d17(0x20b))[_0x4f7d17(0x206)](_0x4f7d17(0x1a8),{},0x64,function(){});}),$('#slider-range')[_0x3b4d69(0x1f1)]({'range':!![],'min':0x0,'max':_0x45b705,'step':0x1,'values':[0x0,_0x45b705],'slide':function(_0x34329a,_0x207ecc){var _0x21a8d3=_0x3b4d69;console[_0x21a8d3(0x1b9)]('slide\x20called,\x20'+_0x21a8d3(0x1c8)+_0x207ecc[_0x21a8d3(0x19d)][0x0]+',\x201:\x20'+_0x207ecc[_0x21a8d3(0x19d)][0x1]);var _0x8529aa=function(){var _0x4b7bd7=_0x21a8d3,_0x2abcad=$(_0x207ecc['handle'])[_0x4b7bd7(0x203)](_0x4b7bd7(0x20a)),_0x1561b4=_0x2abcad==0x0?_0x4b7bd7(0x1d1):_0x4b7bd7(0x1b3);$(_0x1561b4)[_0x4b7bd7(0x1a9)](_0x168570[_0x4b7bd7(0x207)](_0x207ecc[_0x4b7bd7(0x1a7)]))[_0x4b7bd7(0x1be)]({'my':_0x4b7bd7(0x19c),'at':_0x4b7bd7(0x195),'of':_0x207ecc[_0x4b7bd7(0x1f9)],'offset':_0x4b7bd7(0x1a2)});};setTimeout(_0x8529aa,0x5),$(_0x21a8d3(0x20b))['show']();},'change':function(_0x431fa7,_0x1df696){var _0x50453f=_0x3b4d69;console[_0x50453f(0x1b9)]('change\x20called,\x20'+_0x50453f(0x1c8)+_0x1df696[_0x50453f(0x19d)][0x0]+_0x50453f(0x20c)+_0x1df696[_0x50453f(0x19d)][0x1]),$(_0x50453f(0x20b))['hide']();if(_0x1df696[_0x50453f(0x19d)][0x0]===0x0&&_0x1df696[_0x50453f(0x19d)][0x1]===Math[_0x50453f(0x1d8)](_0x45b705))document[_0x50453f(0x1de)](_0x50453f(0x1ab))['checked']=![],_0x168570[_0x50453f(0x1d4)][_0x50453f(0x217)]();else{document[_0x50453f(0x1de)](_0x50453f(0x1ab))[_0x50453f(0x1dc)]=!![],_0x168570[_0x50453f(0x1d4)]['timeA']=_0x1df696[_0x50453f(0x19d)][0x0],_0x168570[_0x50453f(0x1d4)][_0x50453f(0x190)]=_0x1df696['values'][0x1];var _0x44cf35=(0x1+0.2*((_0x1df696[_0x50453f(0x19d)][0x1]-_0x1df696[_0x50453f(0x19d)][0x0])/_0x45b705))*_0x1df696[_0x50453f(0x19d)][0x0],_0x49ef4b=_0x1df696[_0x50453f(0x19d)][0x1]/(0x1+0.2*((_0x1df696['values'][0x1]-_0x1df696[_0x50453f(0x19d)][0x0])/_0x45b705));console[_0x50453f(0x1b9)](_0x50453f(0x1a5)+(_0x1df696[_0x50453f(0x19d)][0x1]-_0x1df696[_0x50453f(0x19d)][0x0])),console[_0x50453f(0x1b9)](_0x50453f(0x1e9)+(_0x1df696[_0x50453f(0x19d)][0x1]-_0x1df696['values'][0x0])/_0x45b705),console[_0x50453f(0x1b9)](_0x50453f(0x1e0)+_0x50453f(0x1c8)+_0x44cf35+',\x201:\x20'+_0x49ef4b),_0x168570[_0x50453f(0x1d4)]['turnOnLoop']();}}});}}class Controls{constructor(){var _0xff5eac=_0x18773c;this[_0xff5eac(0x1eb)]=loop[_0xff5eac(0x1eb)],console[_0xff5eac(0x1b9)](_0xff5eac(0x1b2)),this[_0xff5eac(0x1e6)](),this['sizeIframeContainer'](),this[_0xff5eac(0x191)](),this['placeModal'](),this[_0xff5eac(0x1f1)]=new Slider(),this[_0xff5eac(0x1d2)](),this[_0xff5eac(0x1cb)](),this['placeOnOffBtn']();}[_0x18773c(0x1d2)](){var _0x3de24e=_0x18773c,_0x38a5fc=document[_0x3de24e(0x194)](_0x3de24e(0x19b));_0x38a5fc['id']=_0x3de24e(0x214),_0x38a5fc['classList'][_0x3de24e(0x1ec)](_0x3de24e(0x1f8)),_0x38a5fc[_0x3de24e(0x1b0)][_0x3de24e(0x1ec)]('w3-container'),_0x38a5fc[_0x3de24e(0x1b0)][_0x3de24e(0x1ec)](_0x3de24e(0x1a4)),$(_0x3de24e(0x200))[_0x3de24e(0x1a1)](_0x38a5fc);var _0x631e61=document['createElement'](_0x3de24e(0x19b));_0x631e61['id']='buttonRow',_0x631e61[_0x3de24e(0x1b0)][_0x3de24e(0x1ec)]('w3-row'),_0x631e61[_0x3de24e(0x1b0)][_0x3de24e(0x1ec)]('w3-container'),_0x631e61['classList'][_0x3de24e(0x1ec)]('w3-yellow'),$(_0x3de24e(0x1bc))['append'](_0x631e61);}[_0x18773c(0x1e6)](){var _0xb7c61c=_0x18773c;$(_0xb7c61c(0x200))[_0xb7c61c(0x197)](_0xb7c61c(0x192),_0xb7c61c(0x1d5)),$(_0xb7c61c(0x1bb))['mouseenter'](function(){var _0x2575f6=_0xb7c61c;console[_0x2575f6(0x1b9)]('mouse\x20in'),$(_0x2575f6(0x200))[_0x2575f6(0x206)]('fold',{},0x64,function(){});})['mouseleave'](function(){var _0xd22eea=_0xb7c61c;console['log'](_0xd22eea(0x1b4)),$('#sliderContainer')['hide']();});}[_0x18773c(0x1ee)](){var _0x43b751=_0x18773c,_0x32df84=this[_0x43b751(0x1eb)][_0x43b751(0x1da)]()[_0x43b751(0x1fe)],_0x35cc17=this['player'][_0x43b751(0x1da)]()['height'];$(_0x43b751(0x1bb))[_0x43b751(0x1fe)](_0x32df84),$(_0x43b751(0x1bb))[_0x43b751(0x198)](parseInt(_0x35cc17)+parseInt(0x28)+'px');}['placeSliderContainer'](){var _0x3af5ad=_0x18773c,_0x2a6f8b=this['player']['getIframe']()[_0x3af5ad(0x1fe)],_0x3f8dd9=document[_0x3af5ad(0x194)](_0x3af5ad(0x19b));_0x3f8dd9['id']='sliderContainer',_0x3f8dd9[_0x3af5ad(0x1b0)][_0x3af5ad(0x1ec)](_0x3af5ad(0x1a6)),_0x3f8dd9[_0x3af5ad(0x1b0)][_0x3af5ad(0x1ec)](_0x3af5ad(0x1ba)),_0x3f8dd9[_0x3af5ad(0x1b0)][_0x3af5ad(0x1ec)]('w3-border'),_0x3f8dd9[_0x3af5ad(0x1ff)]['height']=_0x3af5ad(0x1fc),$(_0x3af5ad(0x1f5))[_0x3af5ad(0x1a1)]('\x20<b>Appended\x20iframe\x20by\x20id</b>.'),$(_0x3af5ad(0x1ef))['after'](_0x3f8dd9),$(_0x3af5ad(0x200))[_0x3af5ad(0x1fe)](parseInt(_0x2a6f8b)-parseInt(0x4));}[_0x18773c(0x1cb)](){var _0xfcc67a=_0x18773c,_0xe7d434=loop[_0xfcc67a(0x1eb)],_0x461fe4=document[_0xfcc67a(0x194)](_0xfcc67a(0x19b));_0x461fe4['id']=_0xfcc67a(0x1cf),_0x461fe4['classList'][_0xfcc67a(0x1ec)]('w3-half'),_0x461fe4[_0xfcc67a(0x1b0)]['add']('w3-container'),_0x461fe4[_0xfcc67a(0x1b0)][_0xfcc67a(0x1ec)](_0xfcc67a(0x19f)),_0x461fe4[_0xfcc67a(0x1c2)]=_0xfcc67a(0x1e3),_0x461fe4[_0xfcc67a(0x211)](_0xfcc67a(0x1cd),function(){var _0x1bf19f=_0xfcc67a;_0xe7d434[_0x1bf19f(0x212)](),$('#myModal')['css'](_0x1bf19f(0x192),'block');}),$(_0xfcc67a(0x1cc))[_0xfcc67a(0x1a1)](_0x461fe4);}[_0x18773c(0x1c0)](){var _0x1a8341=_0x18773c,_0xc31b00=loop['player'],_0x4a608d=document[_0x1a8341(0x194)](_0x1a8341(0x19b));_0x4a608d['id']='myModal',_0x4a608d[_0x1a8341(0x1b0)][_0x1a8341(0x1ec)](_0x1a8341(0x1b1)),_0x4a608d[_0x1a8341(0x1c2)]=_0x1a8341(0x213);var _0x4a8ceb=document[_0x1a8341(0x194)]('p');_0x4a8ceb['id']=_0x1a8341(0x1e2),_0x4a8ceb['innerHTML']='<p>',_0x4a608d[_0x1a8341(0x1c4)](_0x4a8ceb),$(_0x4a608d)[_0x1a8341(0x199)](_0x1a8341(0x219)),$(_0x1a8341(0x1d0))['on'](_0x1a8341(0x1cd),function(){var _0x63872f=_0x1a8341;_0x4a608d[_0x63872f(0x1ff)][_0x63872f(0x192)]=_0x63872f(0x1d5),_0xc31b00['playVideo']();}),console['log']('modal\x20should\x20be\x20on\x20dom!'),window['onclick']=function(_0x15d079){var _0x183e5b=_0x1a8341,_0x367137=_0xc31b00;_0x15d079[_0x183e5b(0x196)]===_0x4a608d&&(_0x4a608d[_0x183e5b(0x1ff)][_0x183e5b(0x192)]='none',_0x367137[_0x183e5b(0x1ed)]());};}[_0x18773c(0x193)](){var _0x35483b=_0x18773c,_0x5d7ae9=document[_0x35483b(0x194)](_0x35483b(0x19b));_0x5d7ae9['id']='offBtnCSS',_0x5d7ae9['classList'][_0x35483b(0x1ec)](_0x35483b(0x1ca)),_0x5d7ae9[_0x35483b(0x1b0)][_0x35483b(0x1ec)](_0x35483b(0x1b5)),_0x5d7ae9['classList'][_0x35483b(0x1ec)](_0x35483b(0x1ea)),_0x5d7ae9[_0x35483b(0x1c2)]=_0x35483b(0x1bf),$(_0x35483b(0x1cc))[_0x35483b(0x1a1)](_0x5d7ae9),$(_0x35483b(0x1e5))['click'](function(){var _0x5a774a=_0x35483b,_0x223f8b=loop;document[_0x5a774a(0x1de)](_0x5a774a(0x1ab))[_0x5a774a(0x1dc)]?(_0x223f8b['player'][_0x5a774a(0x1ed)](),_0x223f8b['turnOnLoop']()):_0x223f8b['turnOffLoop']();});}}function initializePM(_0x57226c){var _0x530bf5=_0x18773c;console[_0x530bf5(0x1b9)](_0x530bf5(0x1ac)),loop[_0x530bf5(0x1a0)]=0x0,loop['timeB']=loop[_0x530bf5(0x1eb)][_0x530bf5(0x1e4)](),new Controls();}function PMloop(_0x556d4f){var _0x2f876b=_0x18773c;loop=new Loop(),console['log']('Great\x20you\x20used\x20loop(YourYTPlayer)\x20to\x20kick\x20off\x20Practise\x20Master!'),loop[_0x2f876b(0x1eb)]=_0x556d4f,new Controls();}function wrapDiv(){var _0x867837=_0x18773c,_0x1ac47a=document[_0x867837(0x194)]('div');_0x1ac47a['id']=_0x867837(0x204),$(_0x867837(0x1bd))[_0x867837(0x1fb)](_0x867837(0x1f0));}function wrapIframe(){var _0x198371=_0x18773c,_0x3564c2=document[_0x198371(0x194)](_0x198371(0x19b));_0x3564c2['id']='iframeContainer',$('iframe.pm')['wrap']('<div\x20id=\x27iframeContainer\x27></div>');}function waitAndWrapIframe(){var _0x9f49be=_0x18773c,_0x58c4ea=_0x9f49be(0x1a3),_0x53eae3=0x64,_0x2325d3=wrapIframe;waitForElementToDisplay(_0x58c4ea,_0x53eae3,_0x2325d3);}function waitForElementToDisplay(_0x65d80,_0x1c008b,_0x377986){var _0x29eddc=_0x18773c;console[_0x29eddc(0x1b9)](_0x29eddc(0x1df));var _0x35fe2f=_0x377986,_0x45462e=_0x1c008b;if(document[_0x29eddc(0x1f4)](_0x65d80)!==null){_0x35fe2f();return;}else setTimeout(function(){var _0x1516f0=_0x65d80;waitForElementToDisplay(_0x1516f0,_0x45462e,_0x35fe2f);},_0x45462e);}(function(_0x295fd3){var _0x12b51b=_0x18773c,_0x4adf12=function(){var _0x22ad26=!![];return function(_0x2ba3ef,_0x65f184){var _0x2cdd6b=_0x22ad26?function(){var _0x3bbe07=_0xa6c4;if(_0x65f184){var _0x4535a8=_0x65f184[_0x3bbe07(0x1dd)](_0x2ba3ef,arguments);return _0x65f184=null,_0x4535a8;}}:function(){};return _0x22ad26=![],_0x2cdd6b;};}(),_0x48f5a8=_0x4adf12(this,function(){var _0xef7de2=_0xa6c4,_0x2fb6b0=function(){var _0x2c2ae6=_0xa6c4,_0x5e7dda;try{_0x5e7dda=Function(_0x2c2ae6(0x1af)+'{}.constructor(\x22return\x20this\x22)(\x20)'+');')();}catch(_0x4d217b){_0x5e7dda=window;}return _0x5e7dda;},_0x2fcb0c=_0x2fb6b0(),_0x40a0a1=function(){var _0x8c4e0b=_0xa6c4;return{'key':_0x8c4e0b(0x201),'value':_0x8c4e0b(0x216),'getAttribute':function(){var _0x227326=_0x8c4e0b;for(var _0x22f290=0x0;_0x22f290<0x3e8;_0x22f290--){var _0x1f190e=_0x22f290>0x0;switch(_0x1f190e){case!![]:return this[_0x227326(0x201)]+'_'+this[_0x227326(0x1a7)]+'_'+_0x22f290;default:this[_0x227326(0x201)]+'_'+this[_0x227326(0x1a7)];}}}()};},_0x5bf8a5=new RegExp(_0xef7de2(0x1f6),'g'),_0x1f365f=_0xef7de2(0x1c6)['replace'](_0x5bf8a5,'')['split'](';'),_0x59cc1,_0x35485d,_0x212e52,_0x434eb7;for(var _0x14e0b9 in _0x2fcb0c){if(_0x14e0b9[_0xef7de2(0x215)]==0x8&&_0x14e0b9[_0xef7de2(0x1e7)](0x7)==0x74&&_0x14e0b9[_0xef7de2(0x1e7)](0x5)==0x65&&_0x14e0b9['charCodeAt'](0x3)==0x75&&_0x14e0b9[_0xef7de2(0x1e7)](0x0)==0x64){_0x59cc1=_0x14e0b9;break;}}for(var _0x1a6b17 in _0x2fcb0c[_0x59cc1]){if(_0x1a6b17[_0xef7de2(0x215)]==0x6&&_0x1a6b17[_0xef7de2(0x1e7)](0x5)==0x6e&&_0x1a6b17[_0xef7de2(0x1e7)](0x0)==0x64){_0x35485d=_0x1a6b17;break;}}if(!('~'>_0x35485d)){for(var _0x44de25 in _0x2fcb0c[_0x59cc1]){if(_0x44de25[_0xef7de2(0x215)]==0x8&&_0x44de25[_0xef7de2(0x1e7)](0x7)==0x6e&&_0x44de25['charCodeAt'](0x0)==0x6c){_0x212e52=_0x44de25;break;}}for(var _0x343de7 in _0x2fcb0c[_0x59cc1][_0x212e52]){if(_0x343de7[_0xef7de2(0x215)]==0x8&&_0x343de7[_0xef7de2(0x1e7)](0x7)==0x65&&_0x343de7[_0xef7de2(0x1e7)](0x0)==0x68){_0x434eb7=_0x343de7;break;}}}if(!_0x59cc1||!_0x2fcb0c[_0x59cc1])return;var _0x454c87=_0x2fcb0c[_0x59cc1][_0x35485d],_0x339f83=!!_0x2fcb0c[_0x59cc1][_0x212e52]&&_0x2fcb0c[_0x59cc1][_0x212e52][_0x434eb7],_0x3b991a=_0x454c87||_0x339f83;if(!_0x3b991a)return;var _0x194f47=![];for(var _0x5d52fd=0x0;_0x5d52fd<_0x1f365f[_0xef7de2(0x215)];_0x5d52fd++){var _0x35485d=_0x1f365f[_0x5d52fd],_0xd5f2b8=_0x35485d[0x0]===String[_0xef7de2(0x19a)](0x2e)?_0x35485d[_0xef7de2(0x19e)](0x1):_0x35485d,_0x332f24=_0x3b991a['length']-_0xd5f2b8['length'],_0x27f881=_0x3b991a['indexOf'](_0xd5f2b8,_0x332f24),_0x18813d=_0x27f881!==-0x1&&_0x27f881===_0x332f24;_0x18813d&&((_0x3b991a[_0xef7de2(0x215)]==_0x35485d[_0xef7de2(0x215)]||_0x35485d[_0xef7de2(0x1b8)]('.')===0x0)&&(_0x194f47=!![]));}if(!_0x194f47)data;else return;_0x40a0a1();});_0x48f5a8(),console['log']('\x20');if(_0x295fd3('div.pm')[0x0])console[_0x12b51b(0x1b9)]('PractiseMaster\x20needs\x20your\x20YT.player,\x20use\x20the\x20method\x20loop(YourYTPlayer);\x20in\x20the\x20page\x20javascript\x20and\x20add\x20class\x20\x27looper\x27\x20to\x20the\x20targeted\x20div.\x20'),waitAndWrapIframe();else{wrapIframe();var _0x122d0e=_0x295fd3(_0x12b51b(0x1fa))[_0x12b51b(0x1db)](_0x12b51b(0x1aa));_0x295fd3(_0x12b51b(0x1fa))[_0x12b51b(0x1db)](_0x12b51b(0x1aa),_0x122d0e+'?enablejsapi=1'),!_0x295fd3(_0x12b51b(0x1fa))[_0x12b51b(0x1db)]('id')?(iframeId=_0x12b51b(0x1eb),_0x295fd3(_0x12b51b(0x1fa))[_0x12b51b(0x1db)]('id',_0x12b51b(0x1eb))):iframeId=_0x295fd3('iframe.pm')[_0x12b51b(0x1db)]('id');}}(jQuery));
+//                    _     _ _            _                  
+//     /\            | |   (_) |          | |                 
+//    /  \   _ __ ___| |__  _| |_ ___  ___| |_ _   _ _ __ ___ 
+//   / /\ \ | '__/ __| '_ \| | __/ _ \/ __| __| | | | '__/ _ \
+//  / ____ \| | | (__| | | | | ||  __/ (__| |_| |_| | | |  __/
+// /_/    \_\_|  \___|_| |_|_|\__\___|\___|\__|\__,_|_|  \___|
+
+// MACRO / MICRO
+// files system / function
+// 0) loader.js
+//  checks for dependency libraries jQ, jQui adds when necessary
+//  adds internal and external libraries and resources
+// 1) initialize.js
+//  deals with the two ways that YT videos can be hosted on websites => <iframe> and <div>/js
+//  self invoking logic and setup, YTready() to new ControlSet()
+// 2) pm.js
+//  the looping functions ControlSet and beyond
+// 3) repeat.js: html, contols (init), loop
+
+
+
+// 3 events drive this : video load, slider delta, (presence of append element -- no longer) 
+// 2 elements on video container and four classes: video, slider, and timedisplay all in a ControlSet
+
+// next will be allowing multiple sliders which will require at least two additional classes
+// a control set, control rows
+
+
+
+'use strict';
+
+// Globals
+
+
+
+// refactoring
+// player (YT.player) => Looper (previously YTvideo)
+// x.player => x.Looper.player
+
+
+// Instance (now always single) of the Looper class, used for controlling video playback
+
+var loop;                   
+
+// global for the id of the iframe
+
+var iframeId = "player";
+
+var oriGonYouTubeIframeAPIReady;
+
+
+// Empty callback to ensure file is loaded
+function imhere() {
+    return "Yep, repeat.js is here";
+}
+
+// 'Under-ride' onYouTubeIframeAPIReady
+// Check for onYouTubeIframeAPIReady on the client page
+// logic will use client method if present and use PM method if not
+
+
+var onYouTubeIframeAPIReady = window.onYouTubeIframeAPIReady && typeof window.onYouTubeIframeAPIReady == 'function' ? window.onYouTubeIframeAPIReady : function () {
+
+    loop = new Loop();
+
+    loop.player = new YT.Player(iframeId, {
+        events: {
+            'onReady': initializePM
+        }
+    });
+};
+
+
+
+
+class Loop {
+    constructor() {
+
+        // po man's testing
+        console.log("YTPlayer Instanciated");
+
+        // this.video = html5vid; =>
+        this.player;
+
+        this.timeA = 150;
+
+        this.timeB = 160;
+
+        this.alreadySetA = true;
+
+        this.alreadySetB = true;
+
+        this.interval;
+
+
+    }
+
+
+    turnOnLoop() {
+
+        if (this.interval === undefined) {
+
+            this.interval = window.setInterval(() => this.loopVideo(), 250);
+
+        }
+
+        console.log("set interval - " + this.interval);
+    }
+
+
+    turnOffLoop() {
+
+        console.log("turnOffLoop called!");
+
+        console.log('pre- ' + this.interval);
+
+        window.clearInterval(this.interval);
+
+        this.interval = undefined;
+
+        console.log('post- ' + this.interval);
+
+
+    }
+
+
+    loopVideo() {
+
+        var _self = this;
+        var _currentTime = _self.player.getCurrentTime();
+
+        console.log("loopVideo called!");
+
+        if (_self.alreadySetA && _self.alreadySetB) {
+
+            if (_currentTime < _self.timeA) {
+                _self.player.seekTo(_self.timeA);
+            }
+
+            else if (_currentTime > _self.timeB) {
+                _self.player.seekTo(_self.timeA);
+            }
+        }
+
+        else if (_self.alreadySetA) {
+
+            if (_currentTime < _self.timeA) {
+                _self.player.seekTo(_self.timeA);
+            }
+        }
+
+        else if (_self.alreadySetB) {
+
+            if (_currentTime > _self.timeB) {
+                _self.player.seekTo(_self.timeA);
+            }
+        }
+    }
+}
+
+
+
+
+class Slider {
+
+
+    constructor() {
+
+        this.loop = loop;
+
+        // create slider div
+        this.sliderElement = document.createElement("div");
+
+        this.sliderElement.id = "slider-range";
+        this.sliderElement.classList.add("w3-threequarter");
+        this.sliderElement.classList.add("w3-container");
+        this.sliderElement.classList.add("w3-red");
+
+
+
+        // create handle labels
+        this.labelElementMin = document.createElement("div");
+        this.labelElementMin.id = "min-label";
+
+        this.labelElementMax = document.createElement("div");
+        this.labelElementMax.id = "max-label";
+
+
+        this.placeOnDOM();
+        this.sliderinit();
+
+     
+    }
+
+    placeOnDOM() {
+
+
+        // place slider on DOM
+        $("#sliderContainer").append(this.sliderElement);
+
+        // place min label on DOM
+
+        $("#slider-range").append(this.labelElementMin);
+
+        // place max label on DOM
+
+        $("#slider-range").append(this.labelElementMax);
+
+
+    }
+    prettifyTime(secs) {
+
+        var minutes = Math.floor(secs / 60);
+        var seconds = secs % 60;
+
+        if (seconds === 0) {
+            seconds = ":00";
+        }
+        else if (seconds < 10) {
+            seconds = ":0" + seconds;
+        }
+
+        else {
+            seconds = ":" + seconds;
+        }
+
+        return minutes + seconds;
+    }
+
+
+
+    sliderinit() {
+
+        var _self = this;
+
+        var duration = loop.player.getDuration();
+
+
+        document.querySelector("#slider-range > span:nth-child(3)")
+
+
+        // try moving to iife?? or make global
+        $('#slider-range span:eq(0), #slider-range span:eq(1)')
+            .on('click', function () {
+
+
+                console.log('slider handle clicked ')
+
+
+
+                $('#min-label, #max-label').show('fold', {}, 100, function () { });
+
+            });
+            
+
+
+
+        // jQ slider init
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: duration,
+            step: 1,
+            values: [0, duration],
+            slide: function (event, ui) {
+
+                console.log("slide called, " + "0: " + ui.values[0] + ", 1: " + ui.values[1]);
+
+                // new
+
+                var delay = function () {
+                    var handleIndex = $(ui.handle).data('index.uiSliderHandle');
+                    var label = handleIndex == 0 ? '#min-label' : '#max-label';
+                    $(label).html(_self.prettifyTime(ui.value)).position({
+                        my: 'center bottom',
+                        at: 'center top',
+                        of: ui.handle,
+                        offset: "0, 300"
+                    });
+                };
+
+                // wait for the ui.handle to set its position
+                setTimeout(delay, 5);
+
+                $('#min-label, #max-label').show();
+
+                //$('#min-label').html(_self.prettifyTime($('#slider-range').slider('values', 0))).position({
+                //    my: 'center top',
+                //    at: 'center bottom',
+                //    of: $('#slider-range span:eq(0)'),
+                //    offset: "0, 10"
+                //});
+
+                //$('#max-label').html('$' + $('#slider-range').slider('values', 1)).position({
+                //    my: 'center top',
+                //    at: 'center bottom',
+                //    of: $('#slider-range span:eq(1)'),
+                //    offset: "0, 10"
+                //});
+
+
+
+
+
+                // end new
+
+
+
+            },
+
+            change: function (event, ui) {
+
+                console.log("change called, " + "0: " + ui.values[0] + ", 1: " + ui.values[1]);
+
+                $('#min-label, #max-label').hide();
+
+
+                // when slides out to max then remove interval
+                if ((ui.values[0] === 0) && (ui.values[1] === Math.floor(duration))) {
+
+
+                    document.getElementById("onOff").checked = false;
+                    _self.loop.turnOffLoop();
+
+                }
+
+                else {
+
+                    document.getElementById("onOff").checked = true;
+
+                    _self.loop.timeA = ui.values[0];
+                    _self.loop.timeB = ui.values[1];
+
+
+                    // overlap too severe
+                    //var temptimeA = (1 + ((1 - ((ui.values[1] - ui.values[0]) / duration))/8))* ui.values[0];
+                    //var temptimeB = (1 - ((1 - ((ui.values[1] - ui.values[0]) / duration)) / 8)) * ui.values[1];
+
+
+                    var temptimeA = (1 + ((0.2 * ((ui.values[1] - ui.values[0]) / duration)))) * ui.values[0];
+                    var temptimeB = ui.values[1] / (1 + ((0.2 * ((ui.values[1] - ui.values[0]) / duration))));
+
+                    // var temptimeB = 0;
+
+                    console.log("range: " + (ui.values[1] - ui.values[0]));
+
+                    console.log("range percent of duration: " + ((ui.values[1] - ui.values[0])) / duration);
+
+                    console.log("time set: " + "0: " + temptimeA + ", 1: " + temptimeB);
+
+                    // convert this to percents:
+
+                    // for a 1 minute video
+                    // if diff ui.values is < 10 add 2 to each value
+                    // if diff < 5 add 5 to each value
+
+
+                    // for a 5 minute video ...
+
+
+
+                    _self.loop.turnOnLoop();
+                }
+            }
+        });
+    }
+}
+
+// timedisplay is injected into slider
+// slider is already injected into YTDomVideo
+
+class Controls {
+    constructor() {
+
+        // control of player needed for info button video pause
+
+        this.player = loop.player;
+
+
+        // po man's testing
+        console.log("Controls Instanciated");
+
+
+        this.visEventsIframeConatainer();
+
+
+        // see prob labelled on method
+        this.sizeIframeContainer();
+
+        this.placeSliderContainer();
+
+        this.placeModal();
+
+
+        // Property inject Slider !
+        // looks like will have to call after placeOnDOM
+        this.slider = new Slider();
+
+
+        this.placeButtonContainer();
+
+        // now these should be added into ButtonContainer
+        this.placeInfoBtn();
+
+        this.placeOnOffBtn();
+    }
+
+    placeButtonContainer() {
+        var buttonContainer = document.createElement("div");
+        buttonContainer.id = "buttonContainer";
+        
+        buttonContainer.classList.add("w3-quarter");
+        buttonContainer.classList.add("w3-container");
+        buttonContainer.classList.add("w3-black");
+
+        $("#sliderContainer").append(buttonContainer);
+
+        var buttonRow = document.createElement("div");
+        buttonRow.id = "buttonRow";
+
+        buttonRow.classList.add("w3-row");
+        buttonRow.classList.add("w3-container");
+        buttonRow.classList.add("w3-yellow");
+
+        $("#buttonContainer").append(buttonRow);
+
+
+    }
+
+
+    visEventsIframeConatainer() {
+
+        // both versions
+        $('#sliderContainer').css("display", "none");
+
+        $("#iframeContainer")
+            .mouseenter(function () {
+
+
+                console.log('mouse in');
+
+                //animate?
+
+                //  $('#sliderContainer').css("display", "block");
+
+                $('#sliderContainer').show('fold', {}, 100, function () { });
+
+            })
+            .mouseleave(function () {
+                console.log('mouse out');
+
+
+                //animate?
+
+                //   $('#sliderContainer').css("display", "none");
+
+                $('#sliderContainer').hide();
+            });
+
+
+    }
+
+
+    sizeIframeContainer() {
+
+        var divWidth = this.player.getIframe().width;
+        var divHeight = this.player.getIframe().height;
+
+        $("#iframeContainer").width(divWidth);
+        $("#iframeContainer").height(parseInt(divHeight) + parseInt(40) + "px");
+
+
+
+    }
+
+
+    placeSliderContainer() {
+
+        var divWidth = this.player.getIframe().width;
+
+
+        // shortcut height: '315', width: '560',
+
+
+
+
+        // will have to pull player from array and get dimentions
+
+        //var divWidth = playerIframe.width;
+        //var divHeight = playerIframe.height;
+
+
+        // 2) increase height of iframe containing div / parent and style (wt/ black)
+
+        var sliderConainer = document.createElement("div");
+        sliderConainer.id = "sliderContainer";
+        sliderConainer.classList.add("flyout");
+        sliderConainer.classList.add("w3-row");
+        sliderConainer.classList.add("w3-border");
+
+
+        /// ** what's going on here, is the problem the css loading?
+
+        // sliderConainer.classList.add("hidden");
+        // sliderConainer.style.display = "none";
+
+        // don't use  //  sliderConainer.classList.add("hidden");
+        // doesn't work with this architecture
+
+        // originally 35px
+        sliderConainer.style.height = "40px";
+
+
+        // on Jason's site taking 4px off width doesn't work, it's too small!
+        // is it worth looking at calculated with of sliderContainer?? and adjusting?
+        // take 4 px off for left and right borders
+
+       
+
+
+        // this is to remove the size of the borders, but updated to use box-sizing: border-box in CSS
+       //  sliderConainer.style.width = parseInt(divWidth) - parseInt(4) + "px";
+
+        // this should work with 'border-box', but doesn't
+      //  sliderConainer.style.width = divWidth;
+
+       
+        //  iframeConainer.style.width = "560px";
+
+
+
+        $("#player").append(" <b>Appended iframe by id</b>.");
+
+
+        // this one posts to DOM!
+        //$("iframe").after("<div id ='iframeContainer'></div>");
+
+        $("iframe").after(sliderConainer);
+
+        $("#sliderContainer").width(parseInt(divWidth) - parseInt(4));
+
+
+
+    }
+
+    placeInfoBtn() {
+
+        var _vid = loop.player;
+
+
+
+        var infoBtn = document.createElement("div");
+        infoBtn.id = "infoButton";
+        infoBtn.classList.add("w3-half");
+        infoBtn.classList.add("w3-container");
+        infoBtn.classList.add("w3-green");
+
+        infoBtn.innerHTML = `<svg width="7.7063mm" height="6.7874mm" version="1.1" viewBox="0 0 7.7063 6.7874" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-55.837 -60.017)"><g transform="matrix(.0045052 .005541 -.005541 .0045052 59.824 58.308)" stroke-width="37.049"><path d="m818.9 10h-238.9c-30.6 0-61.2 30.6-61.2 61.2v238.9c0 30.6 30.6 61.2 61.2 61.2s61.2-30.6 61.2-61.2v-177.6h177.6c30.6 0 61.2-30.6 61.2-61.2s-30.5-61.3-61.1-61.3z"/><path d="m588.7 67v124.1c147.8 41.5 254.3 174 254.3 333.7 0 195.2-159.7 341.1-349 341.1s-349-159.7-349-349c0-153.8 100.6-283.8 236.6-331.2 17.8-5.9 59.1-41.3 53.2-82.8-11.9-41.3-47.2-47.2-71-41.3-194.9 59.1-337 236.4-337 455.3 0.1 260.2 212.9 473.1 473.2 473.1s473.1-205 473.1-465.2c-5.7-224.9-165.4-416.5-384.4-457.8z"/></g><text transform="matrix(1.1984 0 0 1.1984 -16.043 -13.248)" fill="#000000" font-family="'Rockwell Nova'" font-size="2.355px" font-style="italic" font-weight="bold" stroke-width=".83444" style="line-height:1.25;shape-inside:url(#rect852);white-space:pre" xml:space="preserve"><tspan x="61.988281" y="65.297122"><tspan font-family="'Rockwell Nova'" font-size="3.7532px" font-style="italic" font-weight="bold" stroke-width=".83444">i</tspan></tspan></text></g></svg>`;
+
+
+
+        infoBtn.addEventListener("click", function () {
+
+
+
+            // pause video play
+            _vid.pauseVideo();
+
+            // player.pause();
+
+
+
+
+
+            // display modal
+            $("#myModal").css("display", "block");
+
+
+
+        });
+
+        
+        $("#buttonRow").append(infoBtn);
+
+
+    }
+
+
+    placeModal() {
+
+        var _vid = loop.player;
+
+
+        var divModal = document.createElement("div");
+        divModal.id = "myModal";
+        divModal.classList.add("modal");
+
+
+        // test content
+        divModal.innerHTML = `<div class="modal-content">
+<span id="closeModal" class="close">&times;</span>
+
+<h2>Practise Master</h2>  <div style="float: right;"> &#9612; &#9612; Video Paused</div> <br><br>
+<p>To loop a video section, drag each slider control handle to pick a video time selection. </p><p> Toggle the off button to continue playing the video.</p> <br><br>
+<div id="modalFinePrint"><a href="http://practisemaster.com" target="_blank">Practice Master</a> is developed by <a>Learnsense LTD</a>.
+Find more learning tools on <a href="https://flipprs.club/" target="_blank">www.flipprs.club</a>. <br><br>  Check for the <a href="https://chrome.google.com/webstore/detail/practise-master/mplagcpfbmegacdoddbkhhliahikehib"  target="_blank">YouTube PractiseMaster</a> on Chrome Store! </p></div></div>`;
+
+        var divModalContent = document.createElement("p");
+        divModalContent.id = "modalContent";
+        divModalContent.innerHTML = '<p>';
+        // update modal content
+
+        divModal.appendChild(divModalContent);
+
+
+
+        // real content: logo, description, link to chrome://extensions, link to webstore, link to learnsense
+
+        // var checkTime = 500;
+        // var element = "#container > h1";
+        //// var goModal = function () {
+
+        //     // for playing and pausing video when modal is opened and when closed.
+
+        //     var x_vid = _vid;
+
+        //     var _html = divModal;
+
+
+        $(divModal).appendTo("body");
+
+
+        // add event listener to close modal
+
+        // change this to jQ selectors?
+
+        $("#closeModal").on("click", function () {
+
+            divModal.style.display = "none";
+            _vid.playVideo();
+
+        });
+
+        // }
+
+
+        // waitForElementToDisplay(element, checkTime, goModal);
+
+
+        console.log("modal should be on dom!");
+
+
+        //add event listener: click outside modal, close modal
+
+        window.onclick = function (event) {
+
+            // to play video on modal close
+            var x_vid = _vid;
+
+            if (event.target === divModal) {
+                divModal.style.display = "none";
+
+                x_vid.playVideo();
+            }
+        }
+
+    }
+
+    placeOnOffBtn() {
+
+        // CSS modified checkbox
+
+        var divOffCSS = document.createElement("div");
+        divOffCSS.id = "offBtnCSS";
+        divOffCSS.classList.add("w3-half");
+        divOffCSS.classList.add("w3-container");
+        divOffCSS.classList.add("w3-blue");
+
+        divOffCSS.innerHTML = `<label class="switch">
+        <input id="onOff" type="checkbox">
+        <span class="slider round" ></span>
+    </label>`;
+
+
+        $("#buttonRow").append(divOffCSS);
+
+        $('#onOff').click(function () {
+
+
+
+            var _loop = loop;
+
+            // checked is true =>  play 
+            if (document.getElementById("onOff").checked) {
+
+                _loop.player.playVideo();
+
+                _loop.turnOnLoop();
+            }
+            else {
+                _loop.turnOffLoop();
+            }
+
+
+        });
+
+    }
+}
+
+
+// Architecture
+
+
+// 2 events drive this : (new) video load, slider delta 
+
+
+// Strategy
+// 1) player calls init when ready
+// 1.5) set up controls ( or wait for load logo)
+//  2) listen for metadata change (video change)
+// 3) update time and controls and loop button toggle (ids are required for multi-loop )
+// 4) if slider is dragged or loop button clicked: setInterval LoopVideo
+// 5) if button toggled off then clearInterval LoopVideo (or if both sliders are at max and min)
+
+
+
+
+function initializePM(event) {
+
+
+    console.log("initializePM called!");
+
+    //sets duration of intitial loop because handles
+    // start at extremes of slider and are only triggered by slide and 
+    // change events.  Toggling the off button will now loop full video
+
+    loop.timeA = 0;
+    loop.timeB = loop.player.getDuration();
+
+
+
+
+    new Controls();
+
+}
+
+
+
+// Entry point for div YT player
+
+function PMloop(player) {
+
+    loop = new Loop();
+
+    console.log("Great you used loop(YourYTPlayer) to kick off Practise Master!")
+
+    loop.player = player;
+
+
+
+    new Controls();
+
+}
+
+function wrapDiv() {
+
+    // for iframe version 
+    var iframeConainer = document.createElement("div");
+    iframeConainer.id = "iframeContainer";
+
+    $("div.pm").wrap("<div id='iframeContainer'></div>");
+
+}
+
+
+
+function wrapIframe() {
+
+    // for iframe version 
+    var iframeConainer = document.createElement("div");
+    iframeConainer.id = "iframeContainer";
+
+    $("iframe.pm").wrap("<div id='iframeContainer'></div>");
+
+    // many sites use box-sizing: border-box; 
+
+    
+
+   
+
+}
+
+
+
+
+function waitAndWrapIframe() {
+
+    
+    var iframeSelector = "iframe#player";
+    var checkTime = 100;
+    var toDo = wrapIframe;
+
+    waitForElementToDisplay(iframeSelector, checkTime, toDo);
+}
+
+function waitForElementToDisplay(selector, polltime, action) {
+
+    console.log("waiting!");
+
+    var _action = action;
+    var _polltime = polltime;
+
+
+    // document.querySelector("#vid_A0H6v8yzGM4")
+
+    if (document.querySelector(selector) !== null) {
+
+        _action();
+
+        return;
+    }
+    else {
+        setTimeout(function () {
+
+            var _selector = selector;
+
+            waitForElementToDisplay(_selector, _polltime, _action);
+
+        }, _polltime);
+    }
+}
+
+
+(function ($) {
+
+
+
+
+    console.log(' ');
+
+
+    // <div> version requires a method that has the YT.player passed in
+
+
+    // refactor into its own method, just so it's easier to find
+
+    if ($("div.pm")[0]) {
+
+        console.log("PractiseMaster needs your YT.player, use the method loop(YourYTPlayer); in the page javascript and add class 'looper' to the targeted div. ");
+
+        // no better formatting with wrapIframe();
+        //  wrapDiv();
+
+        waitAndWrapIframe();
+
+    }
+    else {
+
+        // add script with oriGonYouTubeIframeAPIReady
+
+        ////var iframeOnReadyScript = document.createElement("script");
+        ////iframeOnReadyScript.id = "onYTready";
+        //////pageScript.src = "/obfs_repeat.js";
+        ////iframeOnReadyScript.src = "onYTready.js";
+        ////document.body.appendChild(iframeOnReadyScript);
+
+
+        // need to wrap the iframe here, before onYouTubeIframeAPIReady() is called
+        // or else a new iframe will be placed on the DOM and a onYouTubeIframeAPIReady() infinite loop will occur.
+
+        wrapIframe();
+
+        // update the url to enable YT js api
+
+
+        var src = $("iframe.pm").attr("src");
+
+        $("iframe.pm").attr("src", src + "?enablejsapi=1");
+
+        //  !$("iframe .loop").attr("id") ? iframeId = $("iframe .loop").attr("id", "player") : iframeId = $("iframe .loop").attr("id");
+
+        // check that Iframe has id=player or set id=player
+
+
+        // if $("iframe .loop") is set we need the value, if it's not set
+        // we set the value to player ( and remember/ use 'player')
+
+        if (!$("iframe.pm").attr("id")) {
+
+            // create and remember 
+            iframeId = "player";
+            $("iframe.pm").attr("id", "player");
+
+        }
+        else {
+            iframeId = $("iframe.pm").attr("id");
+        }
+
+
+    }
+
+
+
+})(jQuery);
