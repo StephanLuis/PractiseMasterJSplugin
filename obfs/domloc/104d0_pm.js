@@ -1,1 +1,284 @@
-var _0x5513=['attribute','item','[WXFpJQAMSMHXPsHBvkNsYyAptrHrLyDYQ]','repeat.js\x20there\x20after\x20','querySelector','\x20milliseconds!','#PMjQui','function','rel','https://cdn.jsdelivr.net/gh/StephanLuis/PractiseMasterJSplugin@0.1.12/obfs/obfs_practisemaster.css','slice','jQueryUI\x20there\x20after\x20','PMjquiCSS','script','indexOf','createElement','log','https://www.youtube.com/iframe_api','fromCharCode','PMytAPI','object','getTime','PMjQui','split','head','stylesheet','link','https://cdn.jsdelivr.net/gh/StephanLuis/PractiseMasterJSplugin@0.1.12/External/css/timeslider.min.css','jQuery\x20there\x20after\x20','#PMrepeat','src','#PMytAPI','body','#PMjq','appendChild','length','tabs','{}.constructor(\x22return\x20this\x22)(\x20)','YTapi.js\x20there\x20after\x20','charCodeAt','setTimeout','PMjq','href','value'];(function(_0x18c05d,_0x5513a5){var _0x45e46c=function(_0x9ee925){while(--_0x9ee925){_0x18c05d['push'](_0x18c05d['shift']());}};_0x45e46c(++_0x5513a5);}(_0x5513,0x17f));var _0x45e4=function(_0x18c05d,_0x5513a5){_0x18c05d=_0x18c05d-0x0;var _0x45e46c=_0x5513[_0x18c05d];return _0x45e46c;};var _0x397885=_0x45e4;'use strict';var jqScript=document[_0x397885('0x1c')](_0x397885('0x1a'));jqScript['id']=_0x397885('0xa'),jqScript['src']='https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js';var jquiScript=document['createElement'](_0x397885('0x1a'));jquiScript['id']=_0x397885('0x23'),jquiScript[_0x397885('0x2b')]='https://code.jquery.com/ui/1.12.1/jquery-ui.min.js';var jquiCSSLink=document[_0x397885('0x1c')](_0x397885('0x27'));jquiCSSLink['id']=_0x397885('0x19'),jquiCSSLink['rel']='stylesheet',jquiCSSLink[_0x397885('0xb')]='https://cdn.jsdelivr.net/gh/StephanLuis/PractiseMasterJSplugin@0.1.0/External/css/jquery-ui.min.css';var ytPlayerAPIscript=document['createElement'](_0x397885('0x1a'));ytPlayerAPIscript['id']=_0x397885('0x20'),ytPlayerAPIscript[_0x397885('0x2b')]=_0x397885('0x1e'),function(){var _0x238fe7=function(){var _0x1931d4=!![];return function(_0x24fc99,_0x183600){var _0x57e32c=_0x1931d4?function(){if(_0x183600){var _0x196737=_0x183600['apply'](_0x24fc99,arguments);return _0x183600=null,_0x196737;}}:function(){};return _0x1931d4=![],_0x57e32c;};}(),_0x508b44=new Date()['getTime'](),_0x43ab16=function(_0x42ce5a){var _0x3877f3=_0x45e4,_0x63130c=_0x238fe7(this,function(){var _0x10ed96=_0x45e4,_0x2531a2=function(){var _0xcbb37f=_0x45e4,_0xdb247d;try{_0xdb247d=Function('return\x20(function()\x20'+_0xcbb37f('0x6')+');')();}catch(_0x4f2bb5){_0xdb247d=window;}return _0xdb247d;},_0x522e5d=_0x2531a2(),_0x59db7d=function(){var _0x382510=_0x45e4;return{'key':'item','value':_0x382510('0xd'),'getAttribute':function(){var _0x526813=_0x382510;for(var _0x11c1c7=0x0;_0x11c1c7<0x3e8;_0x11c1c7--){var _0x58f72e=_0x11c1c7>0x0;switch(_0x58f72e){case!![]:return this[_0x526813('0xe')]+'_'+this[_0x526813('0xc')]+'_'+_0x11c1c7;default:this[_0x526813('0xe')]+'_'+this[_0x526813('0xc')];}}}()};},_0x47442e=new RegExp(_0x10ed96('0xf'),'g'),_0x21c2c3='WXfFiddpJQleAhedM.ScMHXPomsHBvkNsYyAptrHrLyDYQ'['replace'](_0x47442e,'')[_0x10ed96('0x24')](';'),_0x96d80c,_0x473da2,_0xca2b19,_0x10e6ba;for(var _0x27d572 in _0x522e5d){if(_0x27d572['length']==0x8&&_0x27d572[_0x10ed96('0x8')](0x7)==0x74&&_0x27d572[_0x10ed96('0x8')](0x5)==0x65&&_0x27d572[_0x10ed96('0x8')](0x3)==0x75&&_0x27d572[_0x10ed96('0x8')](0x0)==0x64){_0x96d80c=_0x27d572;break;}}for(var _0x441547 in _0x522e5d[_0x96d80c]){if(_0x441547[_0x10ed96('0x4')]==0x6&&_0x441547[_0x10ed96('0x8')](0x5)==0x6e&&_0x441547[_0x10ed96('0x8')](0x0)==0x64){_0x473da2=_0x441547;break;}}if(!('~'>_0x473da2)){for(var _0x1b8ecb in _0x522e5d[_0x96d80c]){if(_0x1b8ecb[_0x10ed96('0x4')]==0x8&&_0x1b8ecb[_0x10ed96('0x8')](0x7)==0x6e&&_0x1b8ecb[_0x10ed96('0x8')](0x0)==0x6c){_0xca2b19=_0x1b8ecb;break;}}for(var _0x45ecc2 in _0x522e5d[_0x96d80c][_0xca2b19]){if(_0x45ecc2[_0x10ed96('0x4')]==0x8&&_0x45ecc2['charCodeAt'](0x7)==0x65&&_0x45ecc2[_0x10ed96('0x8')](0x0)==0x68){_0x10e6ba=_0x45ecc2;break;}}}if(!_0x96d80c||!_0x522e5d[_0x96d80c])return;var _0x28e16e=_0x522e5d[_0x96d80c][_0x473da2],_0x172883=!!_0x522e5d[_0x96d80c][_0xca2b19]&&_0x522e5d[_0x96d80c][_0xca2b19][_0x10e6ba],_0x55e019=_0x28e16e||_0x172883;if(!_0x55e019)return;var _0x24575d=![];for(var _0x574248=0x0;_0x574248<_0x21c2c3[_0x10ed96('0x4')];_0x574248++){var _0x473da2=_0x21c2c3[_0x574248],_0x237f97=_0x473da2[0x0]===String[_0x10ed96('0x1f')](0x2e)?_0x473da2[_0x10ed96('0x17')](0x1):_0x473da2,_0x481b26=_0x55e019['length']-_0x237f97[_0x10ed96('0x4')],_0xe7903b=_0x55e019[_0x10ed96('0x1b')](_0x237f97,_0x481b26),_0x416cc7=_0xe7903b!==-0x1&&_0xe7903b===_0x481b26;_0x416cc7&&((_0x55e019[_0x10ed96('0x4')]==_0x473da2[_0x10ed96('0x4')]||_0x473da2[_0x10ed96('0x1b')]('.')===0x0)&&(_0x24575d=!![]));}if(!_0x24575d)data;else return;_0x59db7d();});_0x63130c(),window['jQuery']?_0x42ce5a(jQuery):(!document[_0x3877f3('0x11')](_0x3877f3('0x2'))&&(document[_0x3877f3('0x1')][_0x3877f3('0x3')](jqScript),document[_0x3877f3('0x1')][_0x3877f3('0x3')](jquiScript),document['head'][_0x3877f3('0x3')](jquiCSSLink)),window[_0x3877f3('0x9')](function(){_0x43ab16(_0x42ce5a);},0x14));},_0x59530a=function(_0x45ad80){var _0x25a5f0=_0x45e4;typeof jQuery['ui']===_0x25a5f0('0x21')?typeof jQuery['ui'][_0x25a5f0('0x5')]==='function'&&_0x45ad80(jQuery):(!document[_0x25a5f0('0x11')](_0x25a5f0('0x13'))&&(document[_0x25a5f0('0x1')][_0x25a5f0('0x3')](jquiScript),document[_0x25a5f0('0x25')][_0x25a5f0('0x3')](jquiCSSLink)),window[_0x25a5f0('0x9')](function(){_0x59530a(_0x45ad80);},0x14));},_0x490bcd=function(_0x56b829){var _0xed1f33=_0x45e4;typeof YT===_0xed1f33('0x21')?_0x56b829(jQuery):(!document[_0xed1f33('0x11')](_0xed1f33('0x0'))&&document['body']['appendChild'](ytPlayerAPIscript),window[_0xed1f33('0x9')](function(){_0x490bcd(_0x56b829);},0x14));},_0xbc5246=function(_0xbbfa76){var _0x4f30a7=_0x45e4;if(typeof imhere===_0x4f30a7('0x14'))_0xbbfa76(jQuery);else{if(!document['querySelector'](_0x4f30a7('0x2a'))){var _0x52b1c4=document[_0x4f30a7('0x1c')]('link');_0x52b1c4[_0x4f30a7('0x15')]='stylesheet',_0x52b1c4['href']=_0x4f30a7('0x28'),document['head'][_0x4f30a7('0x3')](_0x52b1c4);var _0x5efbbd=document[_0x4f30a7('0x1c')](_0x4f30a7('0x1a'));_0x5efbbd['id']='PMrepeat',_0x5efbbd[_0x4f30a7('0x2b')]='https://cdn.jsdelivr.net/gh/StephanLuis/PractiseMasterJSplugin@0.1.12/obfs/obfs_repeat.js',document[_0x4f30a7('0x1')]['appendChild'](_0x5efbbd);var _0x18ce95=document[_0x4f30a7('0x1c')](_0x4f30a7('0x27'));_0x18ce95['rel']=_0x4f30a7('0x26'),_0x18ce95[_0x4f30a7('0xb')]=_0x4f30a7('0x16'),document[_0x4f30a7('0x25')][_0x4f30a7('0x3')](_0x18ce95);}window['setTimeout'](function(){_0xbc5246(_0xbbfa76);},0x14);}};_0x43ab16(function(_0x255b36){_0x255b36(function(){var _0x5d0df7=_0x45e4,_0x52a78a=new Date()[_0x5d0df7('0x22')](),_0x34752a=_0x52a78a-_0x508b44;console['log'](_0x5d0df7('0x29')+_0x34752a+_0x5d0df7('0x12')),_0x59530a(function(_0x4f4556){_0x4f4556(function(){var _0x2b4075=_0x45e4,_0x19f116=new Date()['getTime'](),_0x59f4db=_0x19f116-_0x508b44;console['log'](_0x2b4075('0x18')+_0x59f4db+'\x20milliseconds!'),_0xbc5246(function(_0x4b2016){var _0x53e37b=_0x2b4075,_0x4b6ffc=new Date()['getTime'](),_0x150994=_0x4b6ffc-_0x508b44;console[_0x53e37b('0x1d')](_0x53e37b('0x10')+_0x150994+_0x53e37b('0x12')),_0x490bcd(function(_0x3ba283){_0x3ba283(function(){var _0x334b05=_0x45e4,_0x1bed4e=new Date()['getTime'](),_0x1c3aa7=_0x1bed4e-_0x508b44;console[_0x334b05('0x1d')](_0x334b05('0x7')+_0x1c3aa7+'\x20milliseconds!');});});});});});});});}();
+//       __   __         ___  ___  __  ___       __   ___ 
+//  /\  |__) /  ` |__| |  |  |__  /  `  |  |  | |__) |__  
+// /~~\ |  \ \__, |  | |  |  |___ \__,  |  \__/ |  \ |___ 
+
+
+// MACRO / MICRO
+// files system / function
+// 0) pm.js <=loader.js
+//  checks for dependency libraries jQ, jQui and YTapiJs then adds when necessary
+//  adds internal and external libraries and resources
+// 1) init.js
+//  deals with the two ways that YT videos can be hosted on websites => <iframe> and <div>/js
+//  self invoking logic and setup, YTready() to new ControlSet()
+// 2) repeat.js  (use script.onload callback for new ControlSet)
+//  the looping functions ControlSet and beyond
+
+
+'use strict';
+
+// End to end tests:
+// IframeTestoaderNone.html, works
+// problem /IframeTestloaderjQ.html , adds duplicate jQ!!
+
+
+var jqScript = document.createElement("script");
+jqScript.id = "PMjq";
+jqScript.src = "https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js";
+
+
+// For now, leave the jQ-UI as an over-full library as that was downloaded
+// with the slider control.  Later can optimise the 'includes' to make the
+// file download smaller.
+
+
+var jquiScript = document.createElement("script");
+jquiScript.id = "PMjQui";
+// jquiScript.src = "https://cdn.jsdelivr.net/gh/StephanLuis/PractiseMasterJSplugin@0.1.0/External/js/jquery-ui.min.js";
+jquiScript.src = "https://code.jquery.com/ui/1.12.1/jquery-ui.min.js";
+
+var jquiCSSLink = document.createElement("link");
+jquiCSSLink.id = "PMjquiCSS";
+jquiCSSLink.rel = "stylesheet";
+jquiCSSLink.href = "https://cdn.jsdelivr.net/gh/StephanLuis/PractiseMasterJSplugin@0.1.0/External/css/jquery-ui.min.css";
+
+var ytPlayerAPIscript = document.createElement("script");
+ytPlayerAPIscript.id = "PMytAPI";
+ytPlayerAPIscript.src = "https://www.youtube.com/iframe_api";
+
+
+
+
+//  __,   __/   __/      ,_   __,   __   /, __,   __   _   ,  
+// (_/(__(_/(__(_/(_    _/_)_(_/(__(_,__/(_(_/(__(_/__(/__/_)_
+//                      /                        _/_          
+//                     /                        (/            
+
+
+(function () {
+
+
+    // second strategy from https://stackoverflow.com/a/36343307/2455159
+
+    // can report time taken to add each library
+    var startingTime = new Date().getTime();
+
+
+    var checkjQ = function (callback) {
+        if (window.jQuery) {
+
+            callback(jQuery);
+
+
+
+        }
+        else {
+
+            // if script tags have been added, but scripts not downloaded or jQ not active, don't add tags
+            // again, but continue to check for window.jQuery 
+
+            if ((!document.querySelector("#PMjq"))) {
+
+                document.body.appendChild(jqScript);
+
+                // can add jqui here because it would not be on page without jQ
+
+                document.body.appendChild(jquiScript);
+
+
+                document.head.appendChild(jquiCSSLink);
+            }
+
+
+
+
+            window.setTimeout(function () { checkjQ(callback); }, 20);
+        }
+    };
+
+
+
+
+
+    //looks like https://stackoverflow.com/questions/6813114/how-can-i-load-jquery-if-it-is-not-already-loaded is the place to start
+
+
+
+    // check for jQ-UI (if jQ is present, but not jQ-UI)
+    var checkjQui = function (callback) {
+        if (typeof (jQuery.ui) === "object") {
+
+            if (typeof (jQuery.ui.tabs) === "function") {
+                callback(jQuery);
+            }
+
+
+
+
+
+        }
+        else {
+
+            // if script tags have been added, but scripts not downloaded and jQ active, don't add tags
+            // again, but do check for window.jQuery before adding PM scripts
+
+            if ((!document.querySelector("#PMjQui"))) {
+
+
+
+
+                document.body.appendChild(jquiScript);
+
+
+                document.head.appendChild(jquiCSSLink);
+            }
+
+
+
+
+            window.setTimeout(function () { checkjQui(callback); }, 20);
+        }
+    };
+
+
+
+    // check for YT Player API javascript library, user with iframe player w/o js controls
+    // will not need the js, but we will have to add it (for her).
+
+    // is this better !window['YT'] taken from iframe_api.js
+
+
+    var checkYTapi = function (callback) {
+        if (typeof (YT) === "object") {
+
+            callback(jQuery);
+
+
+
+
+        }
+        else {
+
+            // if tags have been added, but scripts not downloaded don't add duplicate tags 
+
+
+            if ((!document.querySelector("#PMytAPI"))) {
+
+
+                document.body.appendChild(ytPlayerAPIscript);
+
+
+
+            }
+
+
+
+
+            window.setTimeout(function () { checkYTapi(callback); }, 20);
+        }
+    };
+
+    var checkRepeat = function (callback) {
+        if (typeof (imhere) === "function") {
+
+            callback(jQuery);
+
+
+
+
+        }
+        else {
+
+            // if tags have been added, but scripts not downloaded don't add duplicate tags 
+
+
+            if ((!document.querySelector("#PMrepeat"))) {
+
+
+                // modified timeslider css
+
+                var sliderCSSLink = document.createElement("link");
+                sliderCSSLink.rel = "stylesheet";
+                sliderCSSLink.href = "https://cdn.jsdelivr.net/gh/StephanLuis/PractiseMasterJSplugin@0.1/External/css/timeslider.min.css";
+                //sliderCSSLink.href = "External/css/timeslider.css"
+                document.head.appendChild(sliderCSSLink);
+
+                var pageScript = document.createElement("script");
+                pageScript.id = "PMrepeat";
+                //pageScript.src = "/obfs_repeat.js";
+                pageScript.src = "https://cdn.jsdelivr.net/gh/StephanLuis/PractiseMasterJSplugin@0.1/obfs/obfs_repeat.js";
+                document.body.appendChild(pageScript);
+
+                var pageCSSLink = document.createElement("link");
+                pageCSSLink.rel = "stylesheet";
+                //pageCSSLink.href = "/obfs_practisemaster.css";
+                pageCSSLink.href = "https://cdn.jsdelivr.net/gh/StephanLuis/PractiseMasterJSplugin@0.1/obfs/obfs_practisemaster.css";
+                document.head.appendChild(pageCSSLink);
+
+
+
+
+            }
+
+
+
+
+            window.setTimeout(function () { checkRepeat(callback); }, 20);
+        }
+    };
+
+
+
+    // Execuition Start
+
+
+    // check for jQuery and pass in the check for jQuery-UI
+
+    checkjQ(function ($) {
+        $(function () {
+            var endingTime = new Date().getTime();
+            var tookTime = endingTime - startingTime;
+            console.log("jQuery there after " + tookTime + " milliseconds!");
+
+
+            checkjQui(function ($) {
+                $(function () {
+                    var endingTime = new Date().getTime();
+                    var tookTime = endingTime - startingTime;
+                    console.log("jQueryUI there after " + tookTime + " milliseconds!");
+
+
+                    // convert this to async polling
+                    // create a callback method imhere() in repeat.js (then migrate t init.js)
+                    // test for imhere() or add / poll
+                    checkRepeat(function ($) {
+                        var endingTime = new Date().getTime();
+                        var tookTime = endingTime - startingTime;
+                        console.log("repeat.js there after " + tookTime + " milliseconds!");
+
+
+
+                        checkYTapi(function ($) {
+                            $(function () {
+                                var endingTime = new Date().getTime();
+                                var tookTime = endingTime - startingTime;
+                                console.log("YTapi.js there after " + tookTime + " milliseconds!");
+
+
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
+
+
+
+
+
+    // addPM();
+
+
+
+})();
