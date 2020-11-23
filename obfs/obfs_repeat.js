@@ -60,16 +60,16 @@ function imhere() {
 // logic will use client method if present and use PM method if not
 
 
-onYouTubeIframeAPIReady = window.onYouTubeIframeAPIReady && typeof window.onYouTubeIframeAPIReady == 'function' ? window.onYouTubeIframeAPIReady : function () {
+//onYouTubeIframeAPIReady = window.onYouTubeIframeAPIReady && typeof window.onYouTubeIframeAPIReady == 'function' ? window.onYouTubeIframeAPIReady : function () {
 
-    loop = new Loop();
+//    loop = new Loop();
 
-    loop.player = new YT.Player(iframeId, {
-        events: {
-            'onReady': initializePM
-        }
-    });
-};
+//    loop.player = new YT.Player(iframeId, {
+//        events: {
+//            'onReady': initializePM
+//        }
+//    });
+//};
 
 
 // change 'underriding' to be based on video html type <iframe> / <div>
@@ -78,24 +78,24 @@ onYouTubeIframeAPIReady = window.onYouTubeIframeAPIReady && typeof window.onYouT
 
 // if iframe does have pm
 
-//if ($('iframe.pm')) {
-//    window.onYouTubeIframeAPIReady = function () {
+if ($('iframe.pm')) {
+    window.onYouTubeIframeAPIReady = function () {
 
-//        loop = new Loop();
+        loop = new Loop();
 
-//        loop.player = new YT.Player(iframeId, {
-//            events: {
-//                'onReady': initializePM
-//            }
-//        });
-//    };
-//}
-//else {
-//    if ($('div.pm')) {
+        loop.player = new YT.Player(iframeId, {
+            events: {
+                'onReady': initializePM
+            }
+        });
+    };
+}
+else {
+    if ($('div.pm')) {
 
-//        onYouTubeIframeAPIReady = window.onYouTubeIframeAPIReady;
-//    }
-//}
+        onYouTubeIframeAPIReady = window.onYouTubeIframeAPIReady;
+    }
+}
 
 // div will ALWAYS have onYouTubeIframeAPIReady already on page in order to work
 // then client will need to call PMloop(player)
