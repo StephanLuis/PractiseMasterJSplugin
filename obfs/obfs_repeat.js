@@ -932,5 +932,15 @@ function waitForElementToDisplay(selector, polltime, action) {
     }
 
 
+    // super temp attempt to get to work on Fiddlehed##
+
+    loop = new Loop();
+
+    loop.player = new YT.Player(iframeId, {
+        events: {
+            'onReady': initializePM
+        }
+    });
+
 
 })(jQuery);
