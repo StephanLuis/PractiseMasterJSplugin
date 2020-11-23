@@ -46,7 +46,8 @@ var loop;
 
 var iframeId = "player";
 
-var oriGonYouTubeIframeAPIReady;
+// test for deletion
+var onYouTubeIframeAPIReady;
 
 
 // Empty callback to ensure file is loaded
@@ -59,7 +60,7 @@ function imhere() {
 // logic will use client method if present and use PM method if not
 
 
-var onYouTubeIframeAPIReady = window.onYouTubeIframeAPIReady && typeof window.onYouTubeIframeAPIReady == 'function' ? window.onYouTubeIframeAPIReady : function () {
+onYouTubeIframeAPIReady = window.onYouTubeIframeAPIReady && typeof window.onYouTubeIframeAPIReady == 'function' ? window.onYouTubeIframeAPIReady : function () {
 
     loop = new Loop();
 
@@ -71,6 +72,37 @@ var onYouTubeIframeAPIReady = window.onYouTubeIframeAPIReady && typeof window.on
 };
 
 
+// change 'underriding' to be based on video html type <iframe> / <div>
+
+// if iframe doesn't have pm
+
+// if iframe does have pm
+
+//if ($('iframe.pm')) {
+//    window.onYouTubeIframeAPIReady = function () {
+
+//        loop = new Loop();
+
+//        loop.player = new YT.Player(iframeId, {
+//            events: {
+//                'onReady': initializePM
+//            }
+//        });
+//    };
+//}
+//else {
+//    if ($('div.pm')) {
+
+//        onYouTubeIframeAPIReady = window.onYouTubeIframeAPIReady;
+//    }
+//}
+
+// div will ALWAYS have onYouTubeIframeAPIReady already on page in order to work
+// then client will need to call PMloop(player)
+
+// if div doesn't have pm
+
+// if div does have pm
 
 
 class Loop {
@@ -796,7 +828,7 @@ function wrapIframe() {
 function waitAndWrapIframe() {
 
     
-    var iframeSelector = "iframe#player";
+    var iframeSelector = "iframe.pm";
     var checkTime = 100;
     var toDo = wrapIframe;
 
