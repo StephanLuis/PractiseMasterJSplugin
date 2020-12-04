@@ -105,6 +105,38 @@ else {
 // if div does have pm
 
 
+
+///
+// Temp addition of LoopLink method
+///
+
+function loopTimeSpan(start, end) {
+
+    // will have to de-pretify time so that hh:mm:ss => time in seconds
+    var secStart = loop.hmsToSecondsOnly(start);
+    var secEnd = loop.hmsToSecondsOnly(end);
+
+    // throw console error if the start -0 or the end is greater
+    // than length of video in seconds
+
+    if (loop.player.duration < secEnd) {
+
+        console.log("Your call to loopTimeSpan has an end time later than the end of the video!")
+        
+    }
+    else {
+
+        window.loop.timeA = secStart;
+        window.loop.timeB = secEnd;
+
+        $("#slider-range").slider("values", [secStart, secEnd]);
+
+        window.loop.turnOnLoop();
+    }
+
+}
+
+
 class Loop {
     constructor() {
 
