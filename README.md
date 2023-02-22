@@ -19,10 +19,9 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
+![jsDelivr hits (GitHub)](https://img.shields.io/jsdelivr/gh/hy/StephanLuis/PractiseMasterJSplugin?style=for-the-badge)
+![GitHub file size in bytes](https://img.shields.io/github/size/StephanLuis/PractiseMasterJSplugin/nonobfs/PMbundle.js?style=for-the-badge)
+![GitHub issues](https://img.shields.io/github/issues/StephanLuis/PractiseMasterJSplugin?style=for-the-badge)
 ![Build StatusDIY](https://img.shields.io/static/v1?label=Tested&nbsp;With&message=BrowserStack&color=<COLOR>&style=for-the-badge)
 ![Build StatusDIY](https://img.shields.io/static/v1?label=Test&nbsp;Framework&message=Selenium/Appium&color=<COLOR>&style=for-the-badge)
 
