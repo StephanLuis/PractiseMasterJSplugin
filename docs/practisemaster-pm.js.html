@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: practisemaster-pm.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: practisemaster-pm.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * module allows for the newing of a PractiseMaster class 
+ * a global window.PractiseMaster is created
+ * 
+ * @module PractiseMaster Module
+ * @requires Player Module
+ * @requires PageSupport Module
+ */
+
+
+import Player from './player-pm';
+import PageSupport from './pageSupport-pm';
+
+/**
+ * entry point for PractiseMaster js plugin: new PractiseMaster();
+ * @class PractiseMaster
+ * @property {mehtod} globals() - returns window.PractiseMaster
+ * @property {method} player() - news up a Player class for each pm class element
+ * @property {declaration} getElementsByClassName("pm") -  Elements to update with a player 
+ * @property {declaration} getElementsByClassName("pmlinkbuilder") -  Elements to update with a player 
+ * @property {class} PageSupport(siteCSS) - news this up with any site specific css
+ * @property {object} siteCSS - an object for css specific to the host site (ex WordPress)
+ */
+
+class PractiseMaster {
+
+    constructor(siteCSS) {
+
+        this.globals();
+
+        this.pmElements = document.getElementsByClassName("pm");
+
+        this.linkBuilderElements = document.getElementsByClassName("pmlinkbuilder");
+
+        Array.from(this.linkBuilderElements).forEach(el => {
+
+            this.addLinkBuilderHTML(el);
+            this.startLinkBuilder();
+
+        });
+
+        // site (ex WordPress css) goes on page once with PageSupport
+        this.PageSupport = new PageSupport(siteCSS);
+
+        this.player();
+
+        this.siteCSS = siteCSS;
+
+    }
+
+
+
+    /**
+     * instantiates any global variables from the PractiseMaster class
+     * @method
+     */
+
+    globals() {
+
+        window.PractiseMaster = this;
+
+    }
+
+
+
+    /**
+     * news-up a Player class for each of [PMelements]
+     * @method
+     */
+
+    player() {
+
+        console.log(this.pmElements.length + " 'pm' video or audio players created");
+
+        Array.from(this.pmElements).forEach((el) => {
+            // Do stuff here
+            console.log(el.tagName);
+
+            this["PM_" + el.id] = new Player(el);
+
+        });
+
+    }
+
+
+
+    /**
+     * adds LinkBuilder form and tutorial HTML to DOM
+     * @method
+     * @param {Element} el eleent with pmlinkbuilder class
+     */
+
+    addLinkBuilderHTML(el) {
+
+        el.insertAdjacentHTML('afterbegin',
+
+            `
+        &lt;h1>PractiseMaster Link Builder&lt;/h1>
+        &lt;br>
+        &lt;br>
+        &lt;br>
+
+        &lt;h2> Start Here, copy video embed, build loops:&lt;/h2>
+
+
+        &lt;h3> Step 1:&lt;/h3>
+        
+        &lt;fieldset>
+            &lt;legend>Please select your preferred video/audio source:&lt;/legend>
+            &lt;div>
+                &lt;input type="radio" id="source1" name="source" value="vimeo" />
+                &lt;label for="source1">Vimeo&lt;/label>
+                &lt;input type="radio" id="source2" name="source" value="youtube" />
+                &lt;label for="source2">YouTube&lt;/label>
+               
+            &lt;/div>
+            &lt;label for="providerVidID">YouTube or Vimeo ID&lt;/label>
+            &lt;input id="providerVidID" type="text">
+            &lt;div>
+            &lt;br>    
+            &lt;div>
+                &lt;input type="radio" id="source3" name="source" value="MP4" />
+                &lt;label for="source3">MP4&lt;/label>
+                &lt;input type="radio" id="source4" name="source" value="MP3" />
+                &lt;label for="source4">MP3&lt;/label>
+                &lt;input type="radio" id="source3" name="source" value="OGG" />
+                &lt;label for="source3">OGG&lt;/label>
+            &lt;/div>
+            &lt;label for="sourceURL">Hosted Source&lt;/label>
+            &lt;input id="sourceURL" type="text">
+            &lt;div>
+            &lt;br>
+                &lt;button id="doIt">Start Video&lt;/button>
+            &lt;/div>
+            &lt;br>
+            &lt;br>
+            &lt;fieldset>
+            &lt;div>
+            If you need sources to try:
+            &lt;ul>
+            &lt;li>Vimeo: 76979871
+            &lt;li>YouTube: bTqVqk7FSmY
+            &lt;li>MP4 Video: https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4
+            &lt;li>MP3 Audio: https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3
+            &lt;li>OGG Audio: https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.ogg
+            &lt;/ul>
+            &lt;/div>
+            &lt;/fieldset>
+        &lt;/fieldset>
+        
+
+
+        &lt;div id="copyInputDiv"style="display: none;" >
+
+        &lt;br>
+        &lt;br>
+        &lt;br>
+
+        &lt;h2> Step 2: Copy video embed &lt;/h2>
+        &lt;label for="vidDivDisplay">Video Embed&lt;/label>&lt;input style="width: -webkit-fill-available;" id="vidDivDisplay" disabled >
+        
+
+        &lt;br>
+        &lt;br>
+        &lt;br>
+        &lt;h1>Step 3: Build Loops (&lt;svg aria-hidden="true" focusable="false" data-prefix="fak" data-icon="light-link-circle-arrow-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 610 510" class="uploaded-icon-preview svg-inline--fa fa-light-link-circle-arrow-down" style="width: 31px;height: 22px;">&lt;path fill="currentColor" d="M173 131.4c49.1-49.9 130.9-49.9 180.8 0c26.2 26.2 38.5 61 37 95.5c-28 20.9-49.6 50-61.2 83.7c-4.2-5.8-4-14 .9-19.8c1.8-2.1 3.6-4.1 5.4-6.2c32.9-38 30.9-95-4.7-130.5c-37.4-37.5-98.1-37.5-135.5 0c-41.5 41.5-83.1 83-124.6 124.5c-37.5 37.5-37.5 98.3 0 135.8c37.5 37.5 98.3 37.5 135.8 0c7.5-7.5 15.1-15.1 22.6-22.6c6.2-6.3 16.4-6.3 22.6 0c6.3 6.2 6.3 16.3 0 22.6c-7.5 7.5-15.1 15.1-22.6 22.6c-50 50-131 50-181 0s-50-131.9 0-181c41.5-41.5 83-83.1 124.5-124.6zM286.2 380.6c-47.5-47.5-50.2-123.5-7.1-174.2c2.1-2 4.1-4.1 6.2-6.1c5.8-6.7 15.9-7.4 22.6-1.6c6.6 5.7 7.4 15.8 1.6 22.5c-1.8 2.1-3.6 4.1-5.4 6.2c-32.9 38-30.9 95 4.7 130.5c3.5 3.5 7.3 6.8 11.2 9.6c0 .2 0 .3 0 .5c0 13.4 1.5 26.4 4.3 38.9c-13.8-6.2-26.8-15-38.1-26.3zm282.7-283c-37.5-37.5-98.3-37.5-135.8 0c-7.5 7.5-15.1 15.1-22.6 22.6c-6.2 6.3-16.4 6.3-22.6 0c-6.3-7.1-6.3-16.3 0-22.6c7.5-7.5 15.1-15.1 22.6-22.6c50-50 131-50 181 0c43.2 42.4 49.1 109.2 17.7 158.3c-8.1-6.8-16.8-12.9-26-18.1c22.3-36.9 17.6-85.7-14.3-117.5zM496 480c40 0 77-21.3 97-56s20-77.3 0-112s-57-56-97-56s-77 21.3-97 56s-20 77.3 0 112s57 56 97 56zm0-256c51.4 0 99 27.4 124.7 72s25.7 99.4 0 144S547.4 512 496 512s-99-27.4-124.7-72s-25.7-99.4 0-144s73.3-72 124.7-72zm67.3 163.3l-56 56c-6.2 6.3-16.4 6.3-22.6 0c-18.7-18.7-37.3-37.3-56-56c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0c9.6 9.6 19.1 19.1 28.7 28.7c0-29.8 0-59.6 0-89.4c0-8.8 7.2-16 16-16s16 7.2 16 16c0 29.8 0 59.6 0 89.4c9.6-9.6 19.1-19.1 28.7-28.7c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z" class="">&lt;/path>&lt;/svg>).&lt;/h1>
+        &lt;h3>Your Links Appear Below Video&lt;/h3>
+        &lt;br>
+        &lt;br>
+        &lt;br>
+        &lt;/div>
+    
+        &lt;!-- class="container" sets the max width, now 500px -->
+        &lt;div class="container">
+           
+        &lt;div>
+        
+        `
+        );
+
+    }
+
+
+
+    /**
+     * event listener for #doIt button
+     * adds disabled text box and copy button and calls this.player()
+     * @method
+     */
+
+    startLinkBuilder() {
+
+        // 'submit' from the LoopBuilder form
+
+        const button = document.querySelector("#doIt");
+
+        button.addEventListener(
+            "click",
+            (event) => {
+                //create new div to replicate 
+                // and place it after .container
+                const radioButtons = document.querySelectorAll('input[name="source"]');
+                const vidID = document.querySelector('#providerVidID').value;
+
+                const sourceURL = document.querySelector('#sourceURL').value;
+
+
+                let choice;
+
+                for (const radioButton of radioButtons) {
+                    if (radioButton.checked) {
+                        choice = radioButton.value;
+                        break;
+                    }
+                }
+
+                var htmlLitPage;
+
+                if (choice === 'MP4') {
+
+                    htmlLitPage = `
+                    
+                         &lt;video id="demoMP4" class="pm links" controls crossorigin playsinline
+                             &lt;source src="${sourceURL}" type="video/mp4">
+                             &lt;!-- Fallback for browsers that don't support the &lt;video> element -->
+                             &lt;a href="${sourceURL}" download>Download&lt;/a>
+                         &lt;/video>
+
+                    `;
+
+                }
+
+                else if (choice === 'MP3') {
+
+                    htmlLitPage = `
+                 
+                    &lt;audio id="demoMP3" class="pm links" crossorigin playsinline>
+                        &lt;source src="${sourceURL}" type="audio/mp3">
+                    &lt;/audio>
+
+                `;
+
+                }
+
+                else if (choice === 'OGG') {
+
+                    htmlLitPage = `
+                    
+                    &lt;audio id="demoOGG" class="pm links" crossorigin playsinline>
+                        &lt;source src="${sourceURL}" type="audio/ogg">
+                    &lt;/audio>
+
+
+                    `;
+
+
+                }
+                
+                else {
+
+                    htmlLitPage = `
+                &lt;div id="demo${vidID}" class="pm links" data-plyr-provider="${choice}" data-plyr-embed-id="${vidID}">&lt;/div>
+                `;
+
+                }
+
+
+                // for the textbox (user's code) need to remove the links class
+
+                var htmlLitTextBox = `
+                &lt;div id="demo${vidID}" class="pm" data-plyr-provider="${choice}" data-plyr-embed-id="${vidID}">&lt;/div>
+                `;
+
+                document.querySelector("body").insertAdjacentHTML('beforeend', htmlLitPage);
+
+
+                // add disabled text box to display link code
+                var vidDivDisplay = document.querySelector("#vidDivDisplay");
+
+                vidDivDisplay.value = htmlLitTextBox;
+
+                vidDivDisplay.parentNode.style.display = "block";
+
+
+                // add button to copy loop link code 
+
+                // onclick="((event) => {navigator.clipboard.writeText(document.querySelector('#demo76979871_linkDiv > input[type=text]').value);})()
+
+                var vidDivCopyButtonLit = `&lt;input id="copyVidDiv" type="button" onclick="((event) => {navigator.clipboard.writeText(document.querySelector('#vidDivDisplay').value);})()" value="Copy Video Div">`;
+
+                vidDivDisplay.insertAdjacentHTML('afterend', vidDivCopyButtonLit);
+
+
+                // start practisemaster
+                this.player();
+
+                event.preventDefault();
+
+            },
+
+            false
+        );
+
+    }
+
+}
+
+export default PractiseMaster;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Chapter%2520Module.html">Chapter Module</a></li><li><a href="module-Helpers%2520Module.html">Helpers Module</a></li><li><a href="module-HostSite%2520Module.html">HostSite Module</a></li><li><a href="module-Loop%2520Module.html">Loop Module</a></li><li><a href="module-PageSupport%2520Module.html">PageSupport Module</a></li><li><a href="module-Player%2520Module.html">Player Module</a></li><li><a href="module-PractiseMaster%2520Module.html">PractiseMaster Module</a></li><li><a href="module-UIprep%2520Module.html">UIprep Module</a></li></ul><h3>Classes</h3><ul><li><a href="module-Chapter%252520Module-Chapter.html">Chapter</a></li><li><a href="module-Helpers%2520Module-Helpers.html">Helpers</a></li><li><a href="module-HostSite%2520Module-HostSite.html">HostSite</a></li><li><a href="module-Loop%252520Module-Loop.html">Loop</a></li><li><a href="module-PageSupport%252520Module-PageSupport.html">PageSupport</a></li><li><a href="module-Player%252520Module-Player.html">Player</a></li><li><a href="module-PractiseMaster%2520Module-PractiseMaster.html">PractiseMaster</a></li><li><a href="module-UIprep%252520Module-UIprep.html">UIprep</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed Feb 22 2023 22:49:50 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

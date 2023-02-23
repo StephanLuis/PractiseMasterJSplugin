@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: player-pm.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: player-pm.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * an instance of Player is used for each video on the DOM
+ * the Player class manages Plyr, Loop, Chapter, HTML and events.
+ * the plyr ready event listener instantiats a global window["PMinstance_" + id] that is used by loop and chapter CSS classes
+ * that are injected later
+ * @module Player Module
+ * @requires Plyr Module
+ * @requires Plyr CSS
+ * @requires Loop Module
+ * @requires Chapter Module
+ * @requires UIprep Module
+ */
+
+
+import Plyr from 'plyr';
+import 'plyr/dist/plyr.css';
+
+import Loop from "./loop-pm";
+import Chapter from "./chapter-pm";
+import UIprep from './UIprep-pm';
+
+
+
+/**
+ * adds PractiseMaster looping and chapter controls to Plyr
+ * @class Player
+ * @property {string}  id from element
+ * @property {class} plyrInstance from plyr module
+ * @property {boolean} isStatic as marked by user
+ * @property {obsolete} CSSclasses refactor to classList if possible and remove (used once)
+ * @property {classlist} classList
+ * @property {declaration} code block sets isStatic for given conditions
+ * @property {declaration} code block creates audio or video plyr for given properties
+ * @property {class} uiPrep a new uiPrep class
+ * @property {class} loop a Loop class instance
+ * @property {class} chapter a Chapter class instance
+ * @property {method} addPMReadyListeners adds any listeners required (ex PMready)
+ * 
+ * 
+ */
+class Player {
+
+    /**
+     * class constructor
+     * @param {element} el div with pm class and plyr data requirements 
+     */
+    constructor(el) {
+
+        this.id = el.id;
+
+        this.plyrInstance;
+
+        // note static is set when Plyr is instantiated
+        // otherwise this would be in UIprep
+        // can toggleControls vis/no vis while playing but not set property
+
+        this.isStatic;
+
+        // class list for element, CSSclasses added back after player created
+
+        this.CSSclasses = el.className.split(' ');
+
+        this.classList = el.classList;
+
+        // classlist check for static (user implemented)
+
+        if (el.classList.contains('static') || el.classList.contains('offScreen') || window.PractiseMaster.PageSupport.isSafari || el.classList.contains('links')) {
+
+            this.isStatic = true; // create plyr with static controls
+
+        } else {
+            // create plyr with hover controls
+            this.isStatic = false;
+        }
+
+
+        if (el.tagName === 'AUDIO') {
+
+            this.newPlyrAudio(el);
+
+        }
+        else {
+
+            this.newPlyrVideo(el);
+
+        }
+
+
+        this.uiPrep = new UIprep(el);
+
+        this.loop;
+
+        this.chapter;
+
+        // this will fire after everything to set any universal style
+
+        this.addPMReadyListeners();
+
+    }
+
+
+
+    /**
+     * creates a new video Plyr with the pm element
+     * @param {element} el - div with pm class 
+     */
+
+    newPlyrVideo(el) {
+
+        this.plyrInstance = new Plyr('#' + el.id, {
+            controls: [
+                'play', // Play/pause playback
+                'progress', // The progress bar and scrubber for playback and buffering
+                'current-time', // The current time of playback
+                'duration', // The full duration of the media
+                'mute', // Toggle mute
+                'volume', // Volume control
+                'settings', // Settings menu
+                'fullscreen', // Toggle fullscreen
+            ],
+
+            hideControls: !this.isStatic
+
+        });
+
+        this.setVideoListeners(el.id);
+
+        this.eventListeners();
+
+    }
+
+
+
+    /**
+     * creates a new audio Plyr with the pm element
+     * @param {element} el - div with pm class 
+     */
+
+    newPlyrAudio(el) {
+
+        this.plyrInstance = new Plyr('audio#' + el.id, {});
+
+        this.setAudioListeners(el.id)
+
+        this.eventListeners();
+
+    }
+
+
+
+    /**
+     * called from the plyr ready event listener, this method places the HTML controls on the video player
+     * @param {string} id player/plyr/div id
+     * @emits {event} called 'pmControlsReady'
+     */
+
+    HTMLControls(id) {
+
+        var loopDivsLiteral = `
+                    &lt;div style="flex-basis: 100%; height: 0;">&lt;/div>
+                    &lt;div style="flex-grow: 0.25;">&lt;/div>
+                    &lt;button id="${this.id}_info" class="infoButton plyr__controls__item plyr__control" type="button">
+                    &lt;svg id="infoSVG" class="icon--not-pressed" aria-hidden="true" focusable="false" viewBox="0 0 18 18" >
+                    &lt;path xmlns="http://www.w3.org/2000/svg" d="m9.0598 0.42333c-4.9453 0-8.9522 3.8514-8.9522 8.6049 0 4.7535 4.0068 8.6049 8.9522 8.6049 4.9453 0 8.9522-3.8514 8.9522-8.6049 0-4.7535-4.0068-8.6049-8.9522-8.6049zm0 15.544c-3.9924 0-7.2195-3.1019-7.2195-6.9394 0-3.8306 3.2271-6.9394 7.2195-6.9394 3.9852 0 7.2195 3.1019 7.2195 6.9394 0 3.8375-3.2271 6.9394-7.2195 6.9394zm0-11.728c0.83746 0 1.5161 0.65231 1.5161 1.4573 0 0.80498-0.67863 1.4573-1.5161 1.4573-0.83746 0-1.5161-0.65231-1.5161-1.4573 0-0.80498 0.67863-1.4573 1.5161-1.4573zm2.0215 8.8131c0 0.229-0.19493 0.41637-0.43317 0.41637h-3.1766c-0.23824 0-0.43317-0.18736-0.43317-0.41637v-0.83273c0-0.229 0.19493-0.41637 0.43317-0.41637h0.43317v-2.2206h-0.43317c-0.23824 0-0.43317-0.18736-0.43317-0.41637v-0.83273c0-0.229 0.19493-0.41637 0.43317-0.41637h2.3102c0.23824 0 0.43317 0.18737 0.43317 0.41637v3.4697h0.43317c0.23824 0 0.43317 0.18736 0.43317 0.41637z"/>
+                    &lt;/svg>
+                    &lt;span class="label--not-pressed plyr__sr-only">Info&lt;/span>
+                    &lt;/button>
+                    &lt;span class="PMlogo" style="font-style: italic; font-size: smaller; line-height: 12px;">Practise&lt;br>Master&lt;/span>
+                    &lt;div style="flex-grow: 1;">&lt;/div>
+                    &lt;button id="${this.id}_nowTimeStart" class="plyr__controls__item plyr__control" type="button">
+                    &lt;svg id="nowSVG" class="icon--not-pressed" aria-hidden="true" focusable="false" viewBox="0 0 18 18" style="transform: scaleY(-1)" >
+                    &lt;path xmlns="http://www.w3.org/2000/svg" d="m13.83 0.12947c-0.60243 0.001022-0.93199 0.76661-1.3344 1.2481-0.42034 0.6401-0.18152 1.5806 0.28874 2.0369 0.40781 0.38221 0.08162 0.35863-0.24583 0.33434-3.3737 0.011276-6.7487-0.022766-10.121 0.017257-1.3482 0.13812-2.4025 1.9022-2.2584 3.6894 0.006509 2.7641-0.011751 4.6472 0.01577 7.4105 0.10198 1.8037 1.4251 3.1952 2.7541 3.0023 2.1542-0.01129 3.1065 0.02276 5.26-0.01727 1.3476-0.13717 2.3846-1.9108 2.2409-3.6895-0.01218-1.3917 0.02481-2.7875-0.01954-4.1765-0.096853-0.79696-0.72647-1.1446-1.2687-1.0422-0.527-0.049194-1.1834 0.011045-1.4058 0.78294-0.16627 0.81285-0.048406 1.6792-0.083807 2.5159v1.9074h-4.7123c0.0021-2.5223-0.00462-4.1591-0.00294-6.6814h10.095c-0.3871 0.56351-1.025 1.085-0.87246 1.9767 0.12204 0.66517 0.59476 1.0425 0.92175 1.5235 0.48086 0.55576 1.1804 0.23938 1.5247-0.38686 1.0531-1.4245 2.1432-2.8048 3.1729-4.2573 0.34907-0.65253 0.093278-1.5004-0.34614-1.9384-1.0264-1.3413-2.0186-2.7349-3.0667-4.0431-0.15772-0.13891-0.34622-0.21302-0.53492-0.21263z" style="stroke-width:.014514"/>
+                    &lt;/svg>
+                    &lt;span class="label--pressed plyr__sr-only">Text for Label&lt;/span>
+                    &lt;span class="label--not-pressed plyr__sr-only">Text for Label&lt;/span>
+                    &lt;/button>
+                    &lt;button id="${this.id}_subtrTimeStart" class="plyr__controls__item plyr__control" type="button">
+                    &lt;svg id="cheveronSVG" class="icon--not-pressed" aria-hidden="true" focusable="false" viewBox="0 0 18 18" style="transform: scaleX(-1)" >
+                    &lt;g xmlns="http://www.w3.org/2000/svg" transform="matrix(.036353 0 0 .036621 -3.4195 .1145)" style="stroke-width:7.2515">&lt;g style="stroke-width:7.2515">&lt;g style="stroke-width:7.2515">&lt;path d="m382.68 226.8c-73.671-73.548-147.1-147.35-220.92-220.74-12.991-11.358-32.333-5.3965-41.748 7.4512-10.355 9.4864-22.632 21.691-17.227 37.166 6.041 14.425 20.131 23.247 30.207 34.805 53.47 53.47 106.94 106.94 160.41 160.41-61.919 62.042-124.09 123.84-185.85 186.04-11.359 12.99-5.3968 32.335 7.4522 41.748 9.5221 10.409 21.812 22.708 37.35 17.168 14.308-6.1241 23.115-20.108 34.623-30.154 65.802-65.925 131.86-131.6 197.5-197.68 8.6934-10.271 7.9092-26.86-1.7952-36.212z" style="stroke-width:7.2515"/>&lt;/g>&lt;/g>&lt;/g>
+                    &lt;/svg>
+                    &lt;span class="label--pressed plyr__sr-only">Text for Label&lt;/span>
+                    &lt;span class="label--not-pressed plyr__sr-only">Text for Label&lt;/span>
+                    &lt;/button>
+                    &lt;input id="${this.id}_timeStart"  type="time" data-univHMS class="plyr__controls__item plyr__control" step="0.01" value="00:00:00.000">
+                    &lt;button id="${this.id}_addTimeStart" class="plyr__controls__item plyr__control" type="button">
+                    &lt;svg id="cheveronRevSVG" class="icon--not-pressed" aria-hidden="true" focusable="false" viewBox="0 0 18 18">
+                    &lt;use xlink:href="#cheveronSVG" />
+                    &lt;/svg>
+                    &lt;span class="label--pressed plyr__sr-only">Text for Label&lt;/span>
+                    &lt;span class="label--not-pressed plyr__sr-only">Text for Label&lt;/span>
+                    &lt;/button>
+                    &lt;div style="flex-grow: 1;">&lt;/div>
+                    &lt;button id="${this.id}_nowTimeEnd" class="plyr__controls__item plyr__control" type="button">
+                    &lt;svg id="pointSVG" class="icon--not-pressed" aria-hidden="true" focusable="false" viewBox="0 0 18 18" style="transform: scale(-1, -1)" >
+                    &lt;path xmlns="http://www.w3.org/2000/svg" d="m13.83 0.12947c-0.60243 0.001022-0.93199 0.76661-1.3344 1.2481-0.42034 0.6401-0.18152 1.5806 0.28874 2.0369 0.40781 0.38221 0.08162 0.35863-0.24583 0.33434-3.3737 0.011276-6.7487-0.022766-10.121 0.017257-1.3482 0.13812-2.4025 1.9022-2.2584 3.6894 0.006509 2.7641-0.011751 4.6472 0.01577 7.4105 0.10198 1.8037 1.4251 3.1952 2.7541 3.0023 2.1542-0.01129 3.1065 0.02276 5.26-0.01727 1.3476-0.13717 2.3846-1.9108 2.2409-3.6895-0.01218-1.3917 0.02481-2.7875-0.01954-4.1765-0.096853-0.79696-0.72647-1.1446-1.2687-1.0422-0.527-0.049194-1.1834 0.011045-1.4058 0.78294-0.16627 0.81285-0.048406 1.6792-0.083807 2.5159v1.9074h-4.7123c0.0021-2.5223-0.00462-4.1591-0.00294-6.6814h10.095c-0.3871 0.56351-1.025 1.085-0.87246 1.9767 0.12204 0.66517 0.59476 1.0425 0.92175 1.5235 0.48086 0.55576 1.1804 0.23938 1.5247-0.38686 1.0531-1.4245 2.1432-2.8048 3.1729-4.2573 0.34907-0.65253 0.093278-1.5004-0.34614-1.9384-1.0264-1.3413-2.0186-2.7349-3.0667-4.0431-0.15772-0.13891-0.34622-0.21302-0.53492-0.21263z" style="stroke-width:.014514"/>
+                    &lt;/svg>
+                    &lt;span class="label--pressed plyr__sr-only">Text for Label&lt;/span>
+                    &lt;span class="label--not-pressed plyr__sr-only">Text for Label&lt;/span>
+                    &lt;/button>
+                    &lt;button id="${this.id}_subtrTimeEnd" class="plyr__controls__item plyr__control" type="button">
+                    &lt;svg class="icon--not-pressed" aria-hidden="true" focusable="false" viewBox="0 0 18 18" style="transform: scaleX(-1)" >
+                    &lt;use xlink:href="#cheveronSVG" />
+                    &lt;/svg>
+                    &lt;span class="label--pressed plyr__sr-only">Text for Label&lt;/span>
+                    &lt;span class="label--not-pressed plyr__sr-only">Text for Label&lt;/span>
+                    &lt;/button>
+                    &lt;input id="${this.id}_timeEnd"  type="time" data-univHMS class="plyr__controls__item plyr__control" step="0.01" value="00:00:00.000">
+                    &lt;button id="${this.id}_addTimeEnd" class="plyr__controls__item plyr__control" type="button">
+                    &lt;svg class="icon--not-pressed" aria-hidden="true" focusable="false" viewBox="0 0 18 18">
+                    &lt;use xlink:href="#cheveronSVG" />
+                    &lt;/svg>
+                    &lt;span class="label--pressed plyr__sr-only">Text for Label&lt;/span>
+                    &lt;span class="label--not-pressed plyr__sr-only">Text for Label&lt;/span>
+                    &lt;/button>
+                    &lt;div style="flex-grow: 2;">&lt;/div>
+                    &lt;div id="${this.id}_onOff" class="onoffswitch onoffDiv">
+                    &lt;input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" tabindex="0">
+                        &lt;label class="onoffswitch-label" for="myonoffswitch">
+                        &lt;span class="onoffswitch-inner">&lt;/span>
+                        &lt;span class="onoffswitch-switch">&lt;/span>
+                        &lt;/label>
+                    &lt;/div>
+                &lt;div style="flex-grow: 0.5;"> &amp;nbsp;&lt;/div>
+                `;
+
+
+        document.querySelector("#" + id + " > div.plyr__controls").insertAdjacentHTML('beforeend', loopDivsLiteral);
+
+
+        window.dispatchEvent(new CustomEvent('pmControlsReady', { detail: id }));
+
+    }
+
+
+
+    /**
+     * this method places event listeners on page for PM controls buttons through a delegate in Helpers module 
+     */
+
+    eventListeners() {
+
+        // events these events need delegates to encapsulate id data as closures
+        //  https://stackoverflow.com/questions/46101024/add-event-listener-to-future-item-without-jquery
+
+        // start time events 
+
+        document.addEventListener('click', window.PractiseMaster.PageSupport.helpers.delegate('#' + this.id + '_nowTimeStart', this.setTimeStart));
+
+        document.addEventListener('click', window.PractiseMaster.PageSupport.helpers.delegate('#' + this.id + '_subtrTimeStart', this.subtrTimeStart));
+
+        // event for chronlyHMS 
+        document.addEventListener('keyup', window.PractiseMaster.PageSupport.helpers.delegate('#' + this.id + '_timeStart', this.timeStart));
+
+        document.addEventListener('click', window.PractiseMaster.PageSupport.helpers.delegate('#' + this.id + '_addTimeStart', this.addTimeStart));
+
+
+        // end time events (add return key for starting loop)
+
+        document.addEventListener('click', window.PractiseMaster.PageSupport.helpers.delegate('#' + this.id + '_nowTimeEnd', this.setTimeEnd));
+
+        document.addEventListener('click', window.PractiseMaster.PageSupport.helpers.delegate('#' + this.id + '_subtrTimeEnd', this.subtrTimeEnd));
+
+        // event for chronlyHMS
+        document.addEventListener('keyup', window.PractiseMaster.PageSupport.helpers.delegate('#' + this.id + '_timeEnd', this.timeEnd));
+
+        document.addEventListener('click', window.PractiseMaster.PageSupport.helpers.delegate('#' + this.id + '_addTimeEnd', this.addTimeEnd));
+
+        // loop on / off button event
+
+        document.addEventListener('click', window.PractiseMaster.PageSupport.helpers.delegate('#' + this.id + '_onOff', this.offToggleOldMinus));
+
+
+        // Loop and Chapter Link button event
+
+        document.addEventListener('click', window.PractiseMaster.PageSupport.helpers.delegate('#' + this.id + '_links', this.linkLoopOrChapter));
+
+    }
+
+
+    // actual event listeners
+
+    /**
+     * event listener sets start time
+     * @listens click event of *_nowTimeStart 
+     * @param {event} e unused
+     */
+
+    setTimeStart(e) {
+
+        // 'this' is button so
+
+        const id = this.id.split("_")[0];
+
+
+        console.log("Hey, I'll set the start time for player: " + id);
+
+
+        // Does: 
+        // set loop start
+
+        const currentTime = window.PractiseMaster["PM_" + id].plyrInstance.currentTime;
+        window.PractiseMaster["PM_" + id].loop.startTimeSeconds = currentTime;
+
+
+        // trims string for mobile devices, where input time is updated to input string
+
+        document.querySelector("#" + id + "_timeStart").value = window.PractiseMaster.PageSupport.helpers.toStringTime(currentTime);
+
+
+        // run warning validation
+
+        window.PractiseMaster.PageSupport.helpers.redWarningValidation(id);
+
+    }
+
+
+
+
+    /**
+     * event listener reduces start time
+     * @listens click event of *_subtrTimeStart 
+     * @param {event} e unused
+     */
+
+    subtrTimeStart(e) {
+
+        // 'this' is button so
+        const id = this.id.split("_")[0];
+
+        console.log("Hey, I'll subtract time start for player: " + id);
+
+
+        /// update loop object
+
+        var inputTimeFloat = window.PractiseMaster["PM_" + id].loop.startTimeSeconds / 10000 - 0.25 > 0 ? window.PractiseMaster["PM_" + id].loop.startTimeSeconds / 10000 - 0.25 : 0;
+
+        window.PractiseMaster["PM_" + id].loop.startTimeSeconds = inputTimeFloat;
+
+
+        /// video
+
+        window.PractiseMaster["PM_" + id].plyrInstance.pause();
+
+        window.PractiseMaster["PM_" + id].plyrInstance.currentTime = inputTimeFloat;
+
+
+
+        document.querySelector("#" + id + "_timeStart").value = window.PractiseMaster.PageSupport.helpers.toStringTime(inputTimeFloat);
+
+
+        // run warning validation
+
+        window.PractiseMaster.PageSupport.helpers.redWarningValidation(id);
+
+    }
+
+
+
+    /**
+     * event listener increases start time
+     * @listens click event of *_addTimeStart 
+     * @param {event} e unused
+     */
+
+    addTimeStart(e) {
+
+        // 'this' is button so
+
+        const id = this.id.split("_")[0];
+
+
+        console.log("Hey, I'll add time end for player: " + id);
+
+
+        /// update loop object
+
+        var inputTimeFloat = window.PractiseMaster["PM_" + id].loop.startTimeSeconds / 10000 + 0.25;
+
+
+        window.PractiseMaster["PM_" + id].loop.startTimeSeconds = inputTimeFloat;
+
+
+        /// video
+
+        window.PractiseMaster["PM_" + id].plyrInstance.pause();
+
+        window.PractiseMaster["PM_" + id].plyrInstance.currentTime = inputTimeFloat;
+
+
+        document.querySelector("#" + id + "_timeStart").value = window.PractiseMaster.PageSupport.helpers.toStringTime(inputTimeFloat);
+
+
+        // run warning validation
+
+        window.PractiseMaster.PageSupport.helpers.redWarningValidation(id);
+
+    }
+
+
+
+
+    /**
+     * event listener for &lt;input type="time"> or chronlyHMS updating start time
+     * @listens keyup event of *_timeStart
+     * @param {e} event 
+     */
+
+    timeStart(e) {
+
+        // 'this' is button so
+
+        const id = this.id.split("_")[0];
+
+        console.log("Hey, I'll digit adjust the start time for player: " + id);
+
+
+        // update loop instance
+
+        var startTimeString = this.value;
+
+
+        // was toFloatSecs x2
+
+        window.PractiseMaster["PM_" + id].loop.startTimeSeconds = window.PractiseMaster.PageSupport.helpers.secondsNumber(startTimeString);
+
+
+        window.PractiseMaster["PM_" + id].plyrInstance.currentTime = window.PractiseMaster.PageSupport.helpers.secondsNumber(startTimeString);
+
+        // run warning validation
+
+        window.PractiseMaster.PageSupport.helpers.redWarningValidation(id);
+
+
+    }
+
+
+
+    /**
+     * event listener sets end time
+     * @listens click event of *_nowTimeEnd 
+     * @param {event} e unused
+     */
+
+    setTimeEnd(e) {
+
+        // 'this' is button so
+
+        const id = this.id.split("_")[0];
+
+
+        console.log("Hey, I'll set the end time for player: " + id);
+
+
+        // get current time of plyr
+
+        // set loop end
+
+        var currentTime = window.PractiseMaster["PM_" + id].plyrInstance.currentTime;
+
+
+        window.PractiseMaster["PM_" + id].loop.endTimeSeconds = currentTime;
+
+
+        // trims string for mobile devices, where input time is updated to input string
+
+        document.querySelector("#" + id + "_timeEnd").value = window.PractiseMaster.PageSupport.helpers.toStringTime(currentTime);
+
+
+        // run warning validation
+
+        window.PractiseMaster.PageSupport.helpers.redWarningValidation(id);
+
+    }
+
+
+
+
+    /**
+     * event listener reduces end time
+     * @listens click event of *_subtrTimeEnd
+     * @param {event} e unused
+     */
+
+    subtrTimeEnd(e) {
+
+        // 'this' is button so
+
+        const id = this.id.split("_")[0];
+
+
+        console.log("Hey, I'll subtract time end for player: " + id);
+
+
+        /// update loop object
+
+        var inputTimeFloat = window.PractiseMaster["PM_" + id].loop.endTimeSeconds / 10000 - 0.25 > 0 ? window.PractiseMaster["PM_" + id].loop.endTimeSeconds / 10000 - 0.25 : 0;
+
+        window.PractiseMaster["PM_" + id].loop.endTimeSeconds = inputTimeFloat;
+
+
+        /// video
+
+        window.PractiseMaster["PM_" + id].plyrInstance.pause();
+
+        window.PractiseMaster["PM_" + id].plyrInstance.currentTime = inputTimeFloat;
+
+
+        // trims string for mobile devices, where input time is updated to input string
+        document.querySelector("#" + id + "_timeEnd").value = window.PractiseMaster.PageSupport.helpers.toStringTime(inputTimeFloat);
+
+
+        // run warning validation
+
+        window.PractiseMaster.PageSupport.helpers.redWarningValidation(id);
+
+    }
+
+
+
+    /**
+     * event listener increases end time
+     * @listens click event of *_addTimeEnd 
+     * @param {event} e unused
+     */
+
+    addTimeEnd(event) {
+
+        // 'this' is button so
+
+        const id = this.id.split("_")[0];
+
+
+        console.log("Hey, I'll add time end for player: " + id);
+
+
+        /// update loop object
+
+        var inputTimeFloat = window.PractiseMaster["PM_" + id].loop.endTimeSeconds / 10000 + 0.25;
+
+
+        window.PractiseMaster["PM_" + id].loop.endTimeSeconds = inputTimeFloat;
+
+
+        /// video
+
+        window.PractiseMaster["PM_" + id].plyrInstance.pause();
+
+
+        window.PractiseMaster["PM_" + id].plyrInstance.currentTime = inputTimeFloat;
+
+
+        document.querySelector("#" + id + "_timeEnd").value = window.PractiseMaster.PageSupport.helpers.toStringTime(inputTimeFloat);
+
+
+        //run warning validation
+
+        window.PractiseMaster.PageSupport.helpers.redWarningValidation(id);
+
+    }
+
+
+
+    /**
+     * event listener for &lt;input type="time"> or chronlyHMS updating end time
+     * @listens keyup event of *_timeEnd
+     * @param {event} e unused 
+     */
+
+    timeEnd(e) {
+
+        // 'this' is button so
+
+        const id = this.id.split("_")[0];
+
+
+        console.log("Hey, I'll digit adjust the end time for player: " + id);
+
+
+        var endTimeString = this.value;
+
+
+        window.PractiseMaster["PM_" + id].loop.endTimeSeconds = window.PractiseMaster.PageSupport.helpers.secondsNumber(endTimeString);
+
+
+        window.PractiseMaster["PM_" + id].plyrInstance.currentTime = window.PractiseMaster.PageSupport.helpers.secondsNumber(endTimeString);
+
+
+        //run warning validation
+
+        window.PractiseMaster.PageSupport.helpers.redWarningValidation(id);
+
+    }
+
+
+
+    /**
+     * event listener toggles on/off looping
+     * @listens click event of *_onOff 
+     * @param {event} e unused
+     */
+
+    offToggleOldMinus(e) {
+
+        // 'this' is button so
+
+        const id = this.id.split("_")[0];
+
+
+        console.log("Hey, I'll toggle off/on player: " + id);
+
+
+        // toggle the ui switch
+
+        document.querySelector('#' + id + '_onOff > input').checked = !document.querySelector('#' + id + '_onOff > input').checked;
+
+        // Get loop instance
+
+        const loop = window.PractiseMaster["PM_" + id].loop;
+
+
+        // toggle the loop object instance 
+
+        loop.off = !loop.off;
+
+        console.log("The loop is now switched off: " + loop.off);
+
+
+
+        // warning and invalid states check
+        // and further in own method 
+
+        if (!loop.off) {
+
+            // run validation 
+
+            console.log('asking to run validation for' + id);
+
+            if (window.PractiseMaster.PageSupport.helpers.redWarningValidation(id)) {
+
+
+                window.PractiseMaster["PM_" + id].plyrInstance.pause();
+
+                // turn looping off
+                loop.off = !loop.off;
+
+                // toggle switch back to off
+
+                setTimeout(() => {
+                    document.querySelector('#' + id + '_onOff > input').checked = !document.querySelector('#' + id + '_onOff > input').checked;
+                }, 500);
+
+            }
+
+
+            else {
+
+                window.PractiseMaster["PM_" + id].plyrInstance.play();
+            }
+
+        }
+    }
+
+
+
+    /**
+     * event listener for loopbuilder links
+     * @listens click event of *_links 
+     * @param {event} e unused
+     * @todo refactor this (and other button events and listeners) to the UIprep class
+     */
+
+    linkLoopOrChapter(e) {
+
+        // 'this' is button so
+
+        const id = this.id.split("_")[0];
+
+
+        console.log("Hey, I'll toggle off/on player: " + id);
+
+
+        // need helpers to convert seconds to time before sending to UI
+        window.PractiseMaster["PM_" + id].uiPrep.addHTMLlink();
+
+    }
+
+
+
+    /**
+     * time validation for start and end
+     * @returns {boolean} returns true if invalid, false if valid
+     */
+
+    redWarningValidation() {
+
+
+        const startTimeControl = document.querySelector("#" + this.id.split("_")[0] + "_timeStart");
+
+
+        const endTimeControl = document.querySelector("#" + this.id.split("_")[0] + "_timeEnd");
+
+
+        const loop = window["PMinstance_" + this.id.split("_")[0]].loop;
+
+
+        const conditionsArray = [
+            (loop.startTimeSeconds &lt; 0),
+            (loop.endTimeSeconds &lt; 0),
+            (loop.startTimeSeconds > loop.videoDuration),
+            (loop.endTimeSeconds > loop.videoDuration),
+
+        ];
+
+
+        // remove any invalid css class
+        startTimeControl.classList.remove("invalid");
+
+        endTimeControl.classList.remove("invalid");
+
+
+        if (conditionsArray.includes(true)) {
+
+            // ex device check
+
+            if (true) {
+
+
+
+                var cEa = document.querySelector("#" + this.id).querySelectorAll(".plyr__control");
+
+
+                Array.from(cEa).forEach(function (item) { item.classList.add("plyr__controlError") });
+
+
+            }
+            else {
+
+
+                startTimeControl.classList.add("invalid");
+
+
+                endTimeControl.classList.add("invalid");
+
+
+            }
+
+            // since invalid
+            return true;
+        }
+
+        // since valid
+        return false;
+    }
+
+
+
+    /**
+     * statements that run after plyr 'ready' event for audio 
+     * @listens plyr ready
+     * @param {string} id player/plyr/div id
+     */
+
+    setAudioListeners(id) {
+
+        var closure = this;
+
+        // Audio ready listener (PM will be slightly different)
+        // window["PlyrAudio_" + id].on('ready', event => {
+        this.plyrInstance.on('ready', event => {
+
+            console.log("Plyr audio says it's ready!");
+
+            //  need to 'add back' user's id to div because it's removed by plyr 
+            event.target.id = id;
+
+            // also need to add back pm class because it is removed by plyr  was: event.target.classList.add('pm');
+            closure.CSSclasses.forEach(singleClass => event.target.classList.add(singleClass));
+
+
+            // replaces old new PractiseMaster(), as that is already done:
+            closure.HTMLControls(closure.id);
+            closure.loop = new Loop(closure.id);
+            closure.chapter = new Chapter(closure.id, 0, 0);
+
+            console.log('duration at plyr ready: ' + closure.plyrInstance.duration);
+
+
+            // set duration of loop 
+
+            // for html audio and video there can be lags between plyr ready and the video duration value  being 'ready'
+            // this promise on interval is based on https://stackoverflow.com/questions/17217736/while-loop-with-promises
+            // and https://codepen.io/anon/pen/jzpZMa?editors=0011 
+
+
+            const doSomething = value =>
+                new Promise(resolve =>
+                    setTimeout(() => resolve(value >= 5 ? 'ok' : 'no'), 1000))
+
+            const loop = async value => {
+                let result = null
+                while (result != 'ok') {
+                    console.log(value)
+                    result = await doSomething(value)
+                    value = closure.plyrInstance.duration
+                }
+                console.log('yay audio duration set')
+            }
+
+            loop(closure.plyrInstance.duration)
+                .then(() => {
+                    window["PMinstance_" + id].loop.videoDuration = closure.plyrInstance.duration;
+                    console.log('audio duration all done!');
+                });
+
+
+
+
+
+
+
+            // needs to be initialised first for duration promise in new Loop()
+            window["PMinstance_" + id];
+
+            // make instance available as Global, needed for Loop and Chapter CSSclasses
+            window["PMinstance_" + id] = closure;
+
+            this.uiPrep.addAudioStyle(id);
+
+        });
+
+    }
+
+
+
+    /**
+     * statements that run after plyr 'ready' event for audio 
+     * @listens plyr ready
+     * @param {string} id player/plyr/div id
+     */
+
+    setVideoListeners(id) {
+
+
+        var closure = this;
+
+
+        this.plyrInstance.on('ready', event => {
+
+            // need to be above the conditional duration blocks
+            // needs to be initialised first for duration promise in new Loop()
+            window["PMinstance_" + id];
+
+            // make instance available as Global, needed for Loop and Chapter CSSclasses
+            window["PMinstance_" + id] = closure;
+
+            //  need to 'add back' user's id to div because it's removed by plyr 
+
+            event.target.id = id;
+
+            // also need to add back pm class because it is removed by plyr
+
+            //  event.target.classList.add('pm');
+
+            closure.CSSclasses.forEach(singleClass => event.target.classList.add(singleClass));
+
+
+            console.log("Plyr says it's ready!");
+
+            console.log("Player source is : " + closure.plyrInstance.source);
+
+            console.log("Player duration is : " + closure.plyrInstance.duration);
+
+            // replaces old new PractiseMaster(), as that is already done:
+            closure.HTMLControls(id);
+            closure.loop = new Loop(closure.id);
+            closure.chapter = new Chapter(closure.id, 0, 0);
+
+
+
+            // methods to set duration and css are different depending on Video type
+
+            if (closure.plyrInstance.isVimeo) {
+
+
+                closure.plyrInstance.embed.getDuration().then(function (duration) {
+                    // the player is ready
+
+                    console.log("This Vimeo getDuration: " + duration + " seconds long.");
+
+                    closure.loop.videoDuration = duration;
+                    console.log('Vimeo player duration is ' + duration);
+
+                    // looks like this needs to go inside promise!
+
+                    console.log("going to call css FH w/in promise! ");
+
+                });
+
+            }
+
+            else if (closure.plyrInstance.isHTML5) {
+
+
+                // for html audio and video there can be lags between plyr ready and the video duration value  being 'ready'
+                // this promise on interval is based on https://stackoverflow.com/questions/17217736/while-loop-with-promises
+                // and https://codepen.io/anon/pen/jzpZMa?editors=0011 
+
+
+                const doSomething = value =>
+                    new Promise(resolve =>
+                        setTimeout(() => resolve(value >= 5 ? 'ok' : 'no'), 1000))
+
+                const loop = async value => {
+                    let result = null
+                    while (result != 'ok') {
+                        console.log(value)
+                        result = await doSomething(value)
+                        value = closure.plyrInstance.duration
+                    }
+                    console.log('yay html video duration set')
+                }
+
+                loop(closure.plyrInstance.duration)
+                    .then(() => {
+                        window["PMinstance_" + id].loop.videoDuration = closure.plyrInstance.duration;
+                        console.log('video duration all done!');
+                    });
+
+
+
+
+
+
+
+            }
+            else {
+
+                // for YouTube 
+
+                closure.loop.videoDuration = closure.plyrInstance.duration;
+
+                console.log('Youtube player duration is ' + closure.plyrInstance.duration);
+
+            }
+
+        });
+
+    };
+
+
+
+    /**
+     * statments to run after PM fires ready and controls are in place
+     * @listens PM ready event 
+     */
+
+    addPMReadyListeners() {
+
+        // closure
+        var player = this;
+
+        window.addEventListener('pmControlsReady', function (e) {
+
+            console.log('custom event fired, process(detail): ' + e.detail + ' and listened !!!!');
+
+            player.uiPrep.applyPMReadyCssHTMLSettings(player.id);
+
+
+
+            // ChronlyHMS added to all players, inactive unless linkbuilder
+            // the data-univHMS will be added in the HTML string literal
+
+
+            player.uiPrep.applyChronlyMSU(player.id);
+
+            // set up ChronlyHMS and link builder
+            if (player.classList.contains('links')) {
+
+                // this updates to LinkBuilder method
+                player.uiPrep.addLinkButton(player.id);
+
+
+                // audio links doesn't need off player controls
+                // the rest of player types do
+
+                if (player.plyrInstance.type === 'video') {
+
+                    player.uiPrep.offPlayerControls(player.id);
+
+                }
+
+
+
+            }
+            else {
+
+                // userChronly method in UIprep ChronlyHMS.disableInputs()
+                player.uiPrep.diableChronly();
+
+            }
+
+            if (player.classList.contains('offScreen')) {
+
+                // this updates to LinkBuilder method
+                player.uiPrep.offPlayerControls(player.id);
+
+
+            }
+
+            console.log('plyr duration at PM ready: ' + player.plyrInstance.duration);
+            // console.log('loop duration at e: ' + player.loop);
+
+            // player.loop.videoDuration = player.plyrInstance.duration
+
+
+            //
+            //  window["PMinstance_" + player.id].loop.videoDuration = player.plyrInstance.duration;
+
+        },
+
+            false);
+    }
+
+}
+
+export default Player;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Chapter%2520Module.html">Chapter Module</a></li><li><a href="module-Helpers%2520Module.html">Helpers Module</a></li><li><a href="module-HostSite%2520Module.html">HostSite Module</a></li><li><a href="module-Loop%2520Module.html">Loop Module</a></li><li><a href="module-PageSupport%2520Module.html">PageSupport Module</a></li><li><a href="module-Player%2520Module.html">Player Module</a></li><li><a href="module-PractiseMaster%2520Module.html">PractiseMaster Module</a></li><li><a href="module-UIprep%2520Module.html">UIprep Module</a></li></ul><h3>Classes</h3><ul><li><a href="module-Chapter%252520Module-Chapter.html">Chapter</a></li><li><a href="module-Helpers%2520Module-Helpers.html">Helpers</a></li><li><a href="module-HostSite%2520Module-HostSite.html">HostSite</a></li><li><a href="module-Loop%252520Module-Loop.html">Loop</a></li><li><a href="module-PageSupport%252520Module-PageSupport.html">PageSupport</a></li><li><a href="module-Player%252520Module-Player.html">Player</a></li><li><a href="module-PractiseMaster%2520Module-PractiseMaster.html">PractiseMaster</a></li><li><a href="module-UIprep%252520Module-UIprep.html">UIprep</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed Feb 22 2023 22:49:50 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

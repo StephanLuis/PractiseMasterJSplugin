@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: loop-pm.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: loop-pm.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * module provides the Loop class, currently member of the Player class
+ * @module Loop Module
+ */
+
+
+/**
+ * loops a time range of video/audio 
+ * @class Loop
+ * @property {string}  id from element
+ * @property {number} videoDuration in seconds
+ * @property {number} startTimeSeconds in seconds
+ * @property {number} endTimeSeconds in seconds
+ * @property {boolean} off is loop turned off
+ *  @property {declaration} code block event listener for loops
+ */
+
+class Loop {
+
+    /**
+     * class constructor
+     * @param {string} id player/plyr/div id
+     */
+
+    constructor(id) {
+
+        this.id = id;
+        this._videoDuration = 1;
+
+        // need initial value for arrow key &lt;> addition of time on UI
+        this._startTimeSeconds = 0;
+        this._endTimeSeconds = 0;
+
+        this.off = true;
+
+        ///
+        ///     This event listener drives the looping, on timeupdate event from plyr
+        ///  
+
+        document.addEventListener('timeupdate', window.PractiseMaster.PageSupport.helpers.delegateByIDparams(this.id, this.startTimeSeconds, this.endTimeSeconds, this.playSegment));
+
+    }
+
+
+    /**
+     * for precision of loops all time values will be seconds * 10000 (times ten thousand)
+     */
+    set startTimeSeconds(secs) {
+        this._startTimeSeconds = secs * 10000;
+    }
+    /**
+     * for precision of loops all time values will be seconds * 10000 (times ten thousand)
+     */
+    get startTimeSeconds() {
+        return this._startTimeSeconds;
+    }
+    /**
+     * for precision of loops all time values will be seconds * 10000 (times ten thousand)
+     */
+    set endTimeSeconds(secs) {
+        this._endTimeSeconds = secs * 10000;
+    }
+    /**
+     * for precision of loops all time values will be seconds * 10000 (times ten thousand)
+     */
+    get endTimeSeconds() {
+        return this._endTimeSeconds;
+    }
+    /**
+     * for precision of loops all time values will be seconds * 10000 (times ten thousand)
+     */
+    set videoDuration(secs) {
+        this._videoDuration = secs * 10000;
+    }
+    /**
+     * for precision of loops all time values will be seconds * 10000 (times ten thousand)
+     */
+    get videoDuration() {
+        return this._videoDuration;
+    }
+
+
+
+    /**
+     * plays a loop
+     */
+
+    playSegment() {
+
+        // not sure of the reason for this empty string check.  Think it's about not picking up the events from non practisemaster Plyr videos on the page
+
+        if (this.id !== "") {
+
+            // if Loop not switched offF
+
+            if (!window["PMinstance_" + this.id].loop.off) {
+
+
+                // control time of chapter
+
+                var currentTime = window["PMinstance_" + this.id].plyrInstance.currentTime * 10000;
+
+                if (currentTime &lt; window["PMinstance_" + this.id].loop.startTimeSeconds || window["PMinstance_" + this.id].loop.endTimeSeconds &lt; currentTime) {
+
+                    window["PMinstance_" + this.id].plyrInstance.currentTime = window["PMinstance_" + this.id].loop.startTimeSeconds / 10000;
+
+                    console.log('reset video to start : ' + window["PMinstance_" + this.id].loop.startTimeSeconds / 10000);
+
+                    console.log('Player ' + this.id + ' has looped, current time: ' + currentTime + ' , end time: ' + window["PMinstance_" + this.id].loop.endTimeSeconds);
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+export default Loop;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Chapter%2520Module.html">Chapter Module</a></li><li><a href="module-Helpers%2520Module.html">Helpers Module</a></li><li><a href="module-HostSite%2520Module.html">HostSite Module</a></li><li><a href="module-Loop%2520Module.html">Loop Module</a></li><li><a href="module-PageSupport%2520Module.html">PageSupport Module</a></li><li><a href="module-Player%2520Module.html">Player Module</a></li><li><a href="module-PractiseMaster%2520Module.html">PractiseMaster Module</a></li><li><a href="module-UIprep%2520Module.html">UIprep Module</a></li></ul><h3>Classes</h3><ul><li><a href="module-Chapter%252520Module-Chapter.html">Chapter</a></li><li><a href="module-Helpers%2520Module-Helpers.html">Helpers</a></li><li><a href="module-HostSite%2520Module-HostSite.html">HostSite</a></li><li><a href="module-Loop%252520Module-Loop.html">Loop</a></li><li><a href="module-PageSupport%252520Module-PageSupport.html">PageSupport</a></li><li><a href="module-Player%252520Module-Player.html">Player</a></li><li><a href="module-PractiseMaster%2520Module-PractiseMaster.html">PractiseMaster</a></li><li><a href="module-UIprep%252520Module-UIprep.html">UIprep</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed Feb 22 2023 22:49:50 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

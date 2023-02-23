@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: pageSupport-pm.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: pageSupport-pm.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * module that provides the PageSupport Class
+ * @module PageSupport Module
+ * @requires HelpImage png
+ * @requires RedImage png
+ * @requires CSS PM.css
+ * @requires Helpers Module
+ * @requires HostSite Module
+ * @requires UserRequest Module
+ * 
+ */
+
+import HelpImage from '../help1.0digit7.png';
+import RedImage from '../red.png';
+
+import '../PM.css';
+
+import Helpers from './helpers-pm';
+
+import HostSite from './hostSite-pm';
+import UserRequest from './userRequest-pm';
+
+/**
+ * This class is for assets that appear once on each page, independant from the number of videos
+ * @class PageSupport
+ * @property {object} cssOpts object passed in PM constructor
+ * @property {HostSite} HostSite Module
+ * @property {Helpers} Helpers Module
+ * @property {PlyrInstance} that should be paused for modal
+ * @property {UserRequest} UserRequest Module
+ * 
+ */
+
+class PageSupport {
+
+    /**
+     * class constructor
+     * @param {object} cssOpts passed in from PM
+     */
+
+    constructor(cssOpts) {
+
+        // css options ex. for WordPress
+        this.cssOpts = cssOpts;
+
+        // injected properties
+        this.hostSite = new HostSite();
+        this.helpers = new Helpers();
+
+        // properties
+        this.PMvideoToPauseModal;
+
+        // init methods
+
+        // first help host site and check that all pm class elements
+        // have an id if not, create one for them
+
+        this.pmClassElements = document.getElementsByClassName("pm");
+
+        this.checkIds();
+
+        this.checkContainer();
+
+        this.placeInfoModal();
+
+        this.pageEventsModal();
+
+
+        this.userRequest = new UserRequest();
+
+        // isSafari will be the same for all players on page
+        // with multiple players
+
+        this.isSafari = this.checkUserBrowserSafari();
+
+    }
+
+    // Class methods
+
+    // these three checks will eventually need some type of validation
+    // so a user doesn't add ex.  static and button to pm div.
+
+    /**
+     * @returns boolean
+     */
+    checkUserBrowserSafari() {
+        if (this.userRequest.browserDetected == 'Safari') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * currently unused
+     */
+    applyPageLoadCssHTMLSettings() {
+        // user request / browser specific 
+
+    }
+
+
+
+    /**
+     * used (for links) to play loops,  where the play starts and ends at a specific time
+     * @param {string} id player/plyr/div id
+     * @param {string|number} startTime 
+     * @param {string|number} endTime 
+     */
+
+    PMloop(id, startTime, endTime) {
+
+        // from the top
+        // 0) prep  a) turn chapter off
+
+        window["PMinstance_" + id].chapter.off = true;
+
+        //1) convert user time into PM time == (decimal seconds*1000) a) string i) "hh:mm:ss.uuu" and truncations b) number i) seconds w &amp; w/o decimal
+
+        var startSeconds = this.helpers.secondsNumber(startTime);
+        var endSeconds = this.helpers.secondsNumber(endTime);
+
+
+        // 2) get loop for id in param and set the new loop values, turn loop on 
+
+        window["PMinstance_" + id].loop.startTimeSeconds = startSeconds;
+        window["PMinstance_" + id].loop.endTimeSeconds = endSeconds;
+
+        window["PMinstance_" + id].loop.off = false;
+
+
+        // 3) set up UI a) loop switch b) time inputs
+
+        document.querySelector("#" + id + "_timeStart").value = this.helpers.toStringTime(startSeconds);
+        document.querySelector("#" + id + "_timeEnd").value = this.helpers.toStringTime(endSeconds);
+
+        document.querySelector("#" + id + "_onOff > input").checked = true;
+
+        // 4) get plyr playing (at correct time) so that it will loop
+
+        window["PMinstance_" + id].plyrInstance.play();
+
+        window["PMinstance_" + id].plyrInstance.currentTime = startSeconds;
+
+        // report state
+        console.log('Looping :' + id + ' from ' + startSeconds + ' to ' + endSeconds);
+
+    }
+
+
+
+    /**
+     * used (for links) to create Chapters,  where the play starts and ends at a specific time
+     * a loop is also set up so that when a user wants to loop the chapter all they have to do is toggle on the 
+     * looper switch
+     * @param {string} id 
+     * @param {string|number} startTime 
+     * @param {string|number} endTime 
+     */
+
+    PMchapter(id, startTime, endTime) {
+
+
+        // update loop, turn it off and gui switch
+        window["PMinstance_" + id].loop.off = true;
+
+
+        document.querySelector("#" + id + "_onOff > input").checked = false;
+
+
+
+        let st = this.helpers.secondsNumber(startTime);
+
+
+        let et = this.helpers.secondsNumber(endTime);
+
+
+        // update the instance chapter
+        window["PMinstance_" + id].chapter.off = false;
+
+
+        window["PMinstance_" + id].chapter.startTimeSeconds = st;
+
+
+        window["PMinstance_" + id].chapter.endTimeSeconds = et;
+
+
+        // update UI
+
+        document.querySelector("#" + id + "_timeStart").value = this.helpers.toStringTime(st);
+
+
+        document.querySelector("#" + id + "_timeEnd").value = this.helpers.toStringTime(et);
+
+
+        // must play bfore setting current time !!
+        window["PMinstance_" + id].plyrInstance.play();
+
+
+        window["PMinstance_" + id].plyrInstance.currentTime = st;
+
+    }
+
+
+
+    /**
+     * adds an ID to PM class element, if id is not there.
+     */
+
+    checkIds() {
+
+        // tidy up of video divs and container divs for user
+        Array.from(this.pmClassElements).forEach(function (item) {
+
+            // IDs: for each of the pm class videos, check for id and add if not present
+
+            // generate 'random' name for .pm elements without ids
+            const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
+
+            // check each for an id if element doesn't have an id then add a hex id
+            item.id ? item.id : item.id = "pm" + genRanHex(3);
+
+        });
+
+    }
+
+
+
+    /**
+     * The outter .contianer Class is required for several plyr library functions.
+     * This method guarantees the formatting of players so there is an outter container.  Even for WordPress where there is more than one
+     * div with class='container' (ex WP),
+     * This method also adds a class PractiseMaster as the parent div for (videos, iframes or divs)
+     */
+
+    checkContainer() {
+
+        Array.from(this.pmClassElements).forEach(function (item) {
+
+
+            // logic: 1) if user has div container use it,  add PractiseMaster class 
+
+            var parentNode = item.parentNode;
+
+            if (parentNode.tagName == "DIV" &amp;&amp; parentNode.classList.contains('container')) {
+
+                // ( if PractiseMaster class is already there that's ok)
+
+                parentNode.classList.add('PractiseMaster');
+
+            }
+            else {
+
+                // wrap pre-player element with a div to become class='container PractiseMaster'
+
+                // create wrapper container
+                var wrapper = document.createElement('div');
+                wrapper.classList.add("container");
+                wrapper.classList.add("PractiseMaster");
+
+                // insert wrapper before el in the DOM tree
+                item.parentNode.insertBefore(wrapper, item);
+
+                // move el into wrapper
+                wrapper.appendChild(item);
+
+            }
+
+        });
+
+    }
+
+
+
+    /**
+     * places help modal on page and it's button listeners
+     */
+
+    placeInfoModal() {
+
+        // Modal pauses and plays video
+        // reference to video is a global called  window.PMvideoToPauseModal 
+
+        // modal div
+
+        var divModal = document.createElement("div");
+        divModal.id = "myModal";
+        divModal.classList.add("modal");
+
+
+        // modal test content => put photo on js cdn!
+
+
+        // Modal Content
+        divModal.innerHTML = `&lt;div class="modal-content"   style= "max-width: 700px;">
+            &lt;span id="closeModal" class="close">&amp;times;&lt;/span>
+            &lt;div style="float: left;"> &amp;#9612; &amp;#9612; Video Paused&lt;/div> &lt;br>&lt;br>
+            &lt;h2>PractiseMaster&amp;trade; Looper&lt;/h2>
+            &lt;div>Allows you to continuously repeat any section of lesson material.
+            &lt;br>
+            &lt;br>
+            &lt;div> To set your own loops:&lt;/div>
+            &lt;ol>&lt;li>Hit the play button   &lt;/li>&lt;li> Set start time on the left time field, set the end time on the right field  &lt;/li>&lt;li>Turn on PractiseMaster using switch in the lower right corner.&lt;/li>&lt;/div>
+            &lt;br>
+            &lt;div>Time is displayed "minutes: seconds. fraction of second".&lt;/div>
+            &lt;br>&lt;br>
+            &lt;div> Or use the pre-set loops if given on the lesson, below the video.
+            &lt;br>
+            &lt;div id="howTo">&lt;/div>
+            &lt;br>
+            &lt;br>
+            &lt;!-- &lt;div id="yellow">Yellow Warning! Start Time > End Time&lt;/div>
+            &lt;br> 
+            &lt;br> -->
+            &lt;div id="red">The PractiseMaster won't function and will turn red when the start time is later than the end time.&lt;/div>
+            
+            &lt;br>&lt;br>
+            &lt;div id="modalFinePrint">&lt;a href="http://practisemaster.com" target="_blank">Practice Master&lt;/a> is developed by Learnsense LTD.&lt;/div>`;
+
+
+        var divModalContent = document.createElement("p");
+
+        divModalContent.id = "modalContent";
+
+        divModalContent.innerHTML = '&lt;p>';
+
+
+        divModal.appendChild(divModalContent);
+
+
+        document.querySelector("body").appendChild(divModal);
+
+
+        // Modal Image Help
+
+        const helpImage = new Image();
+        helpImage.src = HelpImage;
+        helpImage.style.width = "100%";
+
+        document.querySelector("#howTo").appendChild(helpImage);
+
+
+
+
+        // Modal Image Red Warning
+
+        const redImage = new Image();
+        redImage.src = RedImage;
+        redImage.style.width = "100%";
+
+        document.querySelector("#red").appendChild(redImage);
+
+
+        console.log("modal should be on dom!");
+
+    }
+
+
+
+    /**
+     * modal close event listener
+     * @listens document click
+     */
+    
+    pageEventsModal() {
+
+        // modal close event on 'document' because of injected element
+
+        document.addEventListener('click', function (e) {
+
+            if (e.target &amp;&amp; e.target.id === 'closeModal') {
+
+                console.log('time to close modal');
+
+                document.querySelector("#myModal").style.display = "none";
+
+                // Jason says not to play video after modal close
+                //  window.PMvideoToPauseModal.play();
+            }
+
+        });
+
+
+        //add event listener: click outside modal, close modal
+
+        window.onclick = function (event) {
+
+            if (event.target.id === 'myModal') {
+                document.querySelector("#myModal").style.display = "none";
+
+                // Jason says not to play video after modal close
+                //  window.PMvideoToPauseModal.play();
+            }
+
+        }
+
+        document.addEventListener('click', function (e) {
+
+            if (e.target &amp;&amp; e.target.classList.contains('infoButton')) {
+                // pause video play
+
+                // global so that it can be called without an id when closing modal
+                window.PMvideoToPauseModal = window["PMinstance_" + e.target.id.split("_")[0]].plyrInstance;
+                // pause video when modal opens
+                window.PMvideoToPauseModal.pause();
+
+                document.querySelector("#myModal").style.display = "block";
+
+            }
+
+        });
+
+    }
+
+}
+
+export default PageSupport;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Chapter%2520Module.html">Chapter Module</a></li><li><a href="module-Helpers%2520Module.html">Helpers Module</a></li><li><a href="module-HostSite%2520Module.html">HostSite Module</a></li><li><a href="module-Loop%2520Module.html">Loop Module</a></li><li><a href="module-PageSupport%2520Module.html">PageSupport Module</a></li><li><a href="module-Player%2520Module.html">Player Module</a></li><li><a href="module-PractiseMaster%2520Module.html">PractiseMaster Module</a></li><li><a href="module-UIprep%2520Module.html">UIprep Module</a></li></ul><h3>Classes</h3><ul><li><a href="module-Chapter%252520Module-Chapter.html">Chapter</a></li><li><a href="module-Helpers%2520Module-Helpers.html">Helpers</a></li><li><a href="module-HostSite%2520Module-HostSite.html">HostSite</a></li><li><a href="module-Loop%252520Module-Loop.html">Loop</a></li><li><a href="module-PageSupport%252520Module-PageSupport.html">PageSupport</a></li><li><a href="module-Player%252520Module-Player.html">Player</a></li><li><a href="module-PractiseMaster%2520Module-PractiseMaster.html">PractiseMaster</a></li><li><a href="module-UIprep%252520Module-UIprep.html">UIprep</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed Feb 22 2023 22:49:50 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
