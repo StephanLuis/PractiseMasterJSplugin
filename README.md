@@ -19,7 +19,7 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-![jsDelivr hits (GitHub)](https://img.shields.io/jsdelivr/gh/hy/StephanLuis/PractiseMasterJSplugin?style=for-the-badge)
+![jsDelivr hits (GitHub)](https://img.shields.io/jsdelivr/gh/hy/StephanLuis/PractiseMasterJSplugin?label=Beta%20testers%20%28JSDELIVR%29&style=for-the-badge)
 ![GitHub file size in bytes](https://img.shields.io/github/size/StephanLuis/PractiseMasterJSplugin/nonobfs/PMbundle.js?style=for-the-badge)
 ![GitHub issues](https://img.shields.io/github/issues/StephanLuis/PractiseMasterJSplugin?style=for-the-badge)
 ![Build StatusDIY](https://img.shields.io/static/v1?label=Tested&nbsp;With&message=BrowserStack&color=<COLOR>&style=for-the-badge)
