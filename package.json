@@ -1,0 +1,24 @@
+{
+  "name": "practisemaster",
+  "version": "0.0.1",
+  "description": "The distribution point for PractiseMaster from practismaster.com!",
+  "browser": "/nonobfs/bundlesForTests/PMbundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StephanLuis/PractiseMasterJSplugin.git"
+  },
+  "keywords": [
+    "practisemaster",
+    "video",
+    "control"
+  ],
+  "author": "Stephan Luis",
+  "license": "SEE LICENSE IN LearnsenseLicense.txt",
+  "bugs": {
+    "url": "https://github.com/StephanLuis/PractiseMasterJSplugin/issues"
+  },
+  "homepage": "https://github.com/StephanLuis/PractiseMasterJSplugin#readme"
+}
